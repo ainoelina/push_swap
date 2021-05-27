@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/27 13:40:27 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/05/27 14:58:04 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,5 +35,7 @@ typedef struct s_stack
 void	*malloc_memory(size_t size);
 
 int		my_atoi(char *str);
+
+void	add_to_stack(t_stack *a, t_list *node, char *str);
 
 #endif
