@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:45:44 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/27 15:04:49 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/03 13:58:43 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,12 +19,18 @@ void	parse_numbers(t_stack *a, char *str)
 	new_node = NULL;
 	while (*str == ' ')
 		str++;
-	if (!(*str >= '0' && *str <= '9') && *str != '-' && *str != '+')
-		exit(0);
+	if (!(is_digit(*str)) && *str != '-' && *str != '+')
+		error_handling(INPUT_INVALID);
 	a->head->data = my_atoi(str);
 	if (a->head->data > 2147483647 || a->head->data < -2147483648)
-		exit(0);
+		error_handling(INT_MAX_MIN);
 	a->tail = a->head;
+	if (*str == '-' || *str == '+')
+		str++;
+	while (is_digit(*str))
+		str++;
+	if (*str && *str != ' ')
+		error_handling(INPUT_INVALID);
 	add_to_stack(a, new_node, str);
 }
 
@@ -45,26 +51,48 @@ void	create_stack(t_stack *a, int argc, char **argv)
 	 parse_numbers(a, argv[1]);
 	 while (i < argc)
 	{
-		 parse_rest(a, argv[i]);
-		 i++;
+		parse_rest(a, argv[i]);
+		i++;
 	}
+	check_duplicates(a->head);
 }
 
 int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
+	int		stack;
 	int		nb;
 
 	if (argc < 2)
 	{
-		write(1, "Error: invalid arguments.\n", 26);
+		write(1, "Error\nInvalid arguments.\n", 26);
 		return (0);
 	}
 	create_stack(&a, argc, argv);
-	while (a.head->next != NULL)
+	b.head = NULL;
+	b.tail = NULL;
+//	swap(&a.head);
+//	reverse_rotate(&a.head, &a.tail);
+	// while (a.head)
+	// {
+	// 	printf("a stack: %i\n", a.head->data);
+	// 	a.head = a.head->next;
+	// }
+	stack = stack_len(a.head);
+	choose_algorithm(&a, &b, stack);
+//	push(&b.head, &a.head);
+//	push(&b.head, &a.head);
+	stack = stack_len(a.head);
+	printf("stack len is %i\n", stack);
+	while (a.head)
 	{
-		printf("stack: %i\n", a.head->data);
+		printf("a stack: %i\n", a.head->data);
 		a.head = a.head->next;
 	}
+	// while (b.head)
+	// {
+	// 	printf("b stack: %i\n", b.head->data);
+	// 	b.head = b.head->next;
+	// }
 }

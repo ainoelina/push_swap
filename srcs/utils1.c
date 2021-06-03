@@ -6,11 +6,29 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 11:07:03 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/27 13:29:46 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/03 10:42:11 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+int	ft_strlen(char *str)
+{
+	int	i;
+
+	i = 0;
+	while (str[i])
+		i++;
+	return (i);
+}
+
+int	is_digit(int c)
+{
+	if (c >= '0' && c <= '9')
+		return (1);
+	else
+		return (0);
+}
 
 int	my_atoi(char *str)
 {

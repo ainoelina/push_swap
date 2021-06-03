@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 14:55:43 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/05/27 14:58:00 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/03 11:09:34 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -39,11 +39,19 @@ void	add_to_stack(t_stack *a, t_list *node, char *str)
 {
 	while (*str)
 	{
-		printf("%c\n", *str);
 		while (*str == ' ')
 			str++;
 		if (*str == '\0')
 			break ;
+		if (!(is_digit(*str)) && *str != ' '
+			&& *str != '-' && *str != '+')
+			error_handling(INPUT_INVALID);
+		if ((*str == '-' || *str == '+') && (!is_digit(*(str + 1))
+				&& (*(str + 1) != '\0')))
+			error_handling(INPUT_INVALID);
+		if (is_digit(*str) && !is_digit(*(str + 1)) && (*(str + 1) != ' ')
+			&& (*(str + 1) != '\0'))
+			error_handling(INPUT_INVALID);
 		node = add_number(my_atoi(&*str));
 		add_to_tail(&a->tail, node);
 		if (*str == '-' || *str == '+')

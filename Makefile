@@ -6,14 +6,16 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/27 11:15:23 by avuorio       #+#    #+#                  #
-#    Updated: 2021/05/27 11:30:46 by avuorio       ########   odam.nl          #
+#    Updated: 2021/06/03 13:55:58 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	push_swap
 
-SRCS_LIST		=	dll.c \
-						utils.c 
+SRCS_LIST		=	checks.c push_swap.c \
+						utils1.c utils2.c \
+						add.c \
+						operations.c solver.c
 
 SRCS			= $(addprefix srcs/, ${SRCS_LIST})
 
@@ -22,7 +24,7 @@ OBJS			= ${SRCS:%.c=%.o}
 HEADER			= -I ./includes
 
 CC				= gcc
-CFLAGS 			= -Wall -Wextra -Werror
+#CFLAGS 			= -Wall -Wextra -Werror
 RM				= rm -f
 
 all:			$(NAME)
