@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:45:44 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/03 13:58:43 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/09 08:31:28 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -61,7 +61,6 @@ int	main(int argc, char **argv)
 {
 	t_stack	a;
 	t_stack	b;
-	int		stack;
 	int		nb;
 
 	if (argc < 2)
@@ -72,27 +71,15 @@ int	main(int argc, char **argv)
 	create_stack(&a, argc, argv);
 	b.head = NULL;
 	b.tail = NULL;
-//	swap(&a.head);
-//	reverse_rotate(&a.head, &a.tail);
-	// while (a.head)
-	// {
-	// 	printf("a stack: %i\n", a.head->data);
-	// 	a.head = a.head->next;
-	// }
-	stack = stack_len(a.head);
-	choose_algorithm(&a, &b, stack);
-//	push(&b.head, &a.head);
-//	push(&b.head, &a.head);
-	stack = stack_len(a.head);
-	printf("stack len is %i\n", stack);
+	solve(&a, &b);
 	while (a.head)
 	{
 		printf("a stack: %i\n", a.head->data);
 		a.head = a.head->next;
 	}
-	// while (b.head)
-	// {
-	// 	printf("b stack: %i\n", b.head->data);
-	// 	b.head = b.head->next;
-	// }
+	while (b.head)
+	{
+		printf("b stack: %i\n", b.head->data);
+		b.head = b.head->next;
+	}
 }

@@ -6,16 +6,17 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/27 11:15:23 by avuorio       #+#    #+#                  #
-#    Updated: 2021/06/03 13:55:58 by avuorio       ########   odam.nl          #
+#    Updated: 2021/06/09 09:20:03 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	push_swap
 
-SRCS_LIST		=	checks.c push_swap.c \
-						utils1.c utils2.c \
-						add.c \
-						operations.c solver.c
+SRCS_LIST		=	push_swap.c \
+						checks.c utils1.c utils2.c \
+						add.c operations.c solver.c \
+						sort_five.c sort_hundred.c sort_more.c \
+						find_values.c
 
 SRCS			= $(addprefix srcs/, ${SRCS_LIST})
 
