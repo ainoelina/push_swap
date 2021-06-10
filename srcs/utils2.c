@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 12:53:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/09 07:58:16 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/10 10:16:07 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,16 +25,29 @@ int	stack_len(t_list *stack)
 	return (len);
 }
 
-int	sorted(t_stack *a)
+int	get_position(char *str)
 {
-	t_list	*temp;
+	int	i;
 
-	temp = a->head;
-	while (temp && temp->next)
+	i = 0;
+	while (str[i])
 	{
-		if (temp->data > temp->next->data)
-			return (0);
-		temp = temp->next;
+		while (*str && (*str == '-' || *str == '+' || is_digit(*str)))
+			i++;
 	}
-	return (1);
+	return (i);
 }
+
+// int	sorted(t_stack *a)
+// {
+// 	t_list	*temp;
+
+// 	temp = a->head;
+// 	while (temp && temp->next)
+// 	{
+// 		if (temp->data > temp->next->data)
+// 			return (0);
+// 		temp = temp->next;
+// 	}
+// 	return (1);
+// }

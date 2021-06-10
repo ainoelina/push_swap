@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/09 09:26:29 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/10 11:33:24 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,6 +24,7 @@
 # define INPUT_INVALID -1
 # define INT_MAX_MIN -2
 # define DUPLICATE_ARGS -3
+# define MALLOC_FAIL -4
 
 /*
 ** ~~~~~~~~ DEFINES ~~~
@@ -40,15 +41,16 @@ typedef struct s_list
 	struct s_list	*prev;
 }				t_list;
 
-typedef struct s_stack
+typedef struct s_data
 {
-	t_list	*head;
-	t_list	*tail;
+	t_list	*a;
+	t_list	*b;
+	char	**argv;
 	int		top;
 	int		argc;
 	int		small;
 	int		big;
-}				t_stack;
+}				t_data;
 
 /*
 ** ~~~~~~~~ OPERATIONS ~~~
@@ -62,15 +64,19 @@ void	reverse_rotate(t_list **head, t_list **tail);
 ** ~~~~~~~~ SORTING ALGORITHM ~~~
 */
 
-void	sort_five(t_stack *a, t_stack *b, int stacklen);
+/*
+** ~~~~~~~~ MODIFY STACK ~~~
+*/
 
-void	find_values(t_stack *a, t_stack *b, int stack);
-void	solve(t_stack *a, t_stack *b);
+void	create_stack(t_data *all, int argc, char **argv);
+void	add_to_tail(t_data *all, int stack, int data);
+void	insert_last(t_data *all, int stack, int data);
 
-void	add_to_stack(t_stack *a, t_list *node, char *str);
-
-void	check_duplicates(t_list *head);
-
+/*
+** ~~~~~~~~ CHECKS ~~~
+*/
+void	check_input(t_data *all);
+void	check_duplicates(t_list *list);
 void	error_handling(int error);
 
 /*
@@ -79,10 +85,10 @@ void	error_handling(int error);
 
 void	*malloc_memory(size_t size);
 
-int		sorted(t_stack *a);
 int		ft_strlen(char *str);
 int		my_atoi(char *str);
 int		is_digit(int c);
 int		stack_len(t_list *stack);
+int		get_position(char *str);
 
 #endif

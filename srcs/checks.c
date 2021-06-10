@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 09:07:03 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/03 11:11:30 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/10 10:06:27 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,16 +20,18 @@ void	error_handling(int error)
 		write(1, "Error\nArgument bigger/smaller than an integer.", 47);
 	if (error == DUPLICATE_ARGS)
 		write(1, "Error\nDuplicate integer(s) in arguments.", 41);
+	if (error == MALLOC_FAIL)
+		write(1, "Error\nMallocing failed.\n", 25);
 	exit(0);
 }
 
-void	check_duplicates(t_list *head)
+void	check_duplicates(t_list *list)
 {
 	t_list	*lst1;
 	t_list	*lst2;
 	int		num;
 
-	lst1 = head;
+	lst1 = list;
 	while (lst1)
 	{
 		num = lst1->data;
@@ -41,5 +43,29 @@ void	check_duplicates(t_list *head)
 			lst2 = lst2->next;
 		}
 		lst1 = lst1->next;
+	}
+}
+
+void	check_input(t_data *all)
+{
+	char	*input;
+	int		i;
+
+	i = 1;
+	input = all->argv[i];
+	while (input)
+	{
+		while (*input)
+		{
+			if (*input == ' ' || is_digit(*input))
+				input++;
+			else if ((*input == '-' || *input == '+') && is_digit(*(input + 1))
+				&& (input == all->argv[i] || *(input - 1) == ' '))
+				input++;
+			else
+				error_handling(INPUT_INVALID);
+		}
+		i++;
+		input = all->argv[i];
 	}
 }

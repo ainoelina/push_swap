@@ -5,58 +5,73 @@
 /*                                                     +:+                    */
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/05/27 14:55:43 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/03 11:09:34 by avuorio       ########   odam.nl         */
+/*   Created: 2021/06/10 08:44:45 by avuorio       #+#    #+#                 */
+/*   Updated: 2021/06/10 11:15:18 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-t_list	*add_number(int number)
+void	do_adding(t_list **top, t_list *temp, int data)
 {
-	t_list	*new;
-
-	new = (t_list *)malloc_memory(sizeof(t_list));
-	new->data = number;
-	new->next = NULL;
-	return (new);
+	if (*top)
+	{
+		temp = (t_list *)malloc(sizeof(t_list));
+		if (!temp)
+			error_handling(MALLOC_FAIL);
+		temp->next = *top;
+		temp->prev = (*top)->prev;
+		(*top)->prev = temp;
+		temp->prev->next = temp;
+		temp->data = data;
+	}
+	else
+	{
+		*top = (t_list *)malloc(sizeof(t_list));
+		if (!*top)
+			error_handling(MALLOC_FAIL);
+		(*top)->next = *top;
+		(*top)->prev = *top;
+		(*top)->data = data;
+		(*top)->next->next = NULL;
+	}
 }
 
-void	add_to_tail(t_list **tail, t_list *node)
+void	add_to_tail(t_data *all, int stack, int data)
 {
 	t_list	*temp;
+	t_list	**top;	
 
-	temp = *tail;
-	while (temp->next != NULL)
-		temp = temp->next;
-	temp->next = node;
-	temp = temp->next;
-	temp->prev = *tail;
-	*tail = temp;
+	if (stack == A)
+		top = &all->a;
+	if (stack == B)
+		top = &all->b;
+	do_adding(top, temp, data);
 }
 
-void	add_to_stack(t_stack *a, t_list *node, char *str)
+
+void	insert_last(t_data *all, int stack, int data)
 {
-	while (*str)
+	t_list	**head;
+	t_list	*temp;
+	t_list	*last;
+
+	if (stack == A)
+		head = &all->a;
+	if (stack == B)
+		head = &all->b;
+	temp = (t_list *)malloc(sizeof(t_list));
+	last = all->a;
+	temp->data = data;
+	temp->next = NULL;
+	if (*head == NULL)
 	{
-		while (*str == ' ')
-			str++;
-		if (*str == '\0')
-			break ;
-		if (!(is_digit(*str)) && *str != ' '
-			&& *str != '-' && *str != '+')
-			error_handling(INPUT_INVALID);
-		if ((*str == '-' || *str == '+') && (!is_digit(*(str + 1))
-				&& (*(str + 1) != '\0')))
-			error_handling(INPUT_INVALID);
-		if (is_digit(*str) && !is_digit(*(str + 1)) && (*(str + 1) != ' ')
-			&& (*(str + 1) != '\0'))
-			error_handling(INPUT_INVALID);
-		node = add_number(my_atoi(&*str));
-		add_to_tail(&a->tail, node);
-		if (*str == '-' || *str == '+')
-			str++;
-		while (*str >= '0' && *str <= '9')
-			str++;
+		temp->prev = NULL;
+		*head = temp;
+		return ;
 	}
+	while (last->next != NULL)
+		last = last->next;
+	last->next = temp;
+	temp->prev = last;
 }
