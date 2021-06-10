@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 12:53:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/10 10:16:07 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/10 13:14:41 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -38,16 +38,17 @@ int	get_position(char *str)
 	return (i);
 }
 
-// int	sorted(t_stack *a)
-// {
-// 	t_list	*temp;
+int	sorted(t_list *a)
+{
+	t_list	*temp;
 
-// 	temp = a->head;
-// 	while (temp && temp->next)
-// 	{
-// 		if (temp->data > temp->next->data)
-// 			return (0);
-// 		temp = temp->next;
-// 	}
-// 	return (1);
-// }
+	temp = a;
+	while (temp && temp->next)
+	{
+		if (temp->data > temp->next->data)
+			return (0);
+		temp = temp->next;
+	}
+	printf("sorted!\n");
+	return (1);
+}

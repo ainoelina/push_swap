@@ -6,49 +6,79 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:44:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/10 11:15:18 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/10 14:16:55 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	do_adding(t_list **top, t_list *temp, int data)
+void	check_for_stack(t_data *all, t_list **list, int stack)
 {
-	if (*top)
+	if (stack == A)
+		*list = all->a;
+	if (stack == B)
+		*list = all->b;
+}
+
+void	insert_top(t_data *all, int stack, int data)
+{
+	t_list	**head;
+	t_list	*temp;
+
+	if (stack == A)
+		head = &all->a;
+	else if (stack == B)
+		head = &all->b;
+	if (*head)
 	{
 		temp = (t_list *)malloc(sizeof(t_list));
 		if (!temp)
 			error_handling(MALLOC_FAIL);
-		temp->next = *top;
-		temp->prev = (*top)->prev;
-		(*top)->prev = temp;
+		temp->next = *head;
+		temp->prev = (*head)->prev;
+		(*head)->prev = temp;
 		temp->prev->next = temp;
 		temp->data = data;
+		*head = (*head)->prev;
 	}
 	else
 	{
-		*top = (t_list *)malloc(sizeof(t_list));
-		if (!*top)
+		*head = (t_list *)malloc(sizeof(t_list));
+		if (!*head)
 			error_handling(MALLOC_FAIL);
-		(*top)->next = *top;
-		(*top)->prev = *top;
-		(*top)->data = data;
-		(*top)->next->next = NULL;
+		(*head)->next = *head;
+		(*head)->prev = (*head);
+		(*head)->data = data;
 	}
 }
 
-void	add_to_tail(t_data *all, int stack, int data)
+void	delete_top(t_data *all, int stack)
 {
+	t_list	**top;
 	t_list	*temp;
-	t_list	**top;	
 
 	if (stack == A)
 		top = &all->a;
-	if (stack == B)
+	else if (stack == B)
 		top = &all->b;
-	do_adding(top, temp, data);
+	if (*top)
+	{
+		if ((*top)->next == *top)
+		{
+			free(*top);
+			*top = NULL;
+		}
+		else
+		{
+			temp = *top;
+			*top = (*top)->next;
+			temp->prev->next = *top;
+			printf("what is it???\n");
+			(*top)->prev = temp->prev;
+			free(temp);
+		}
+	}
 }
-
 
 void	insert_last(t_data *all, int stack, int data)
 {
@@ -58,7 +88,7 @@ void	insert_last(t_data *all, int stack, int data)
 
 	if (stack == A)
 		head = &all->a;
-	if (stack == B)
+	else if (stack == B)
 		head = &all->b;
 	temp = (t_list *)malloc(sizeof(t_list));
 	last = all->a;
