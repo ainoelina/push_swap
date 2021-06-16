@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:01:10 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/10 14:28:02 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/16 12:47:31 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,14 +22,7 @@ int	main(int argc, char **argv)
 		return (0);
 	}
 	create_stack(&all, argc, argv);
-	print_address(&all.a, "stack a");
-	print_address(&all.b, "stack b");
-	t_list *temp = all.a;
-	print_address(temp, "temp");
-	push_stack(&all.a, &all.b, &all);
-	print_address(temp, "temp after");
-//	sort_stack(all);
+	sort_stack(&all);
 	print_stack(all.a);
 	print_stack(all.b);
-//	solve(all);
 }

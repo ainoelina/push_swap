@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/10 14:26:48 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/16 14:00:30 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,12 +27,11 @@
 # define MALLOC_FAIL -4
 
 /*
-** ~~~~~~~~ DEFINES ~~~
+** ~~~~~~~~ STACKS ~~~
 */
 
 # define A 1
 # define B 2
-
 
 typedef struct s_list
 {
@@ -55,13 +54,19 @@ typedef struct s_data
 /*
 ** ~~~~~~~~ OPERATIONS ~~~
 */
-void	push(t_data *all, int dest);
-void	push_stack(t_list **dest, t_list **src, t_data *all);
+void	push(t_list **dest, t_list **src, t_data *all);
+void	swap(t_data *all, int stack);
+void	swap_ab(t_data *all);
+void	rotate(t_data *all, int stack);
+void	rotate_ab(t_data *all);
+void	reverse_rotate(t_list **stack);
+void	reverse_rotate_ab(t_data *all);
 
 /*
 ** ~~~~~~~~ SORTING ALGORITHM ~~~
 */
 void	sort_stack(t_data *all);
+void	sort_small(t_data *all, int len);
 
 /*
 ** ~~~~~~~~ MODIFY STACK ~~~
@@ -72,13 +77,13 @@ void	insert_last(t_data *all, int stack, int data);
 void	insert_top(t_data *all, int stack, int data);
 void	delete_top(t_data *all, int stack);
 
-
 /*
 ** ~~~~~~~~ CHECKS ~~~
 */
 void	check_input(t_data *all);
 void	check_duplicates(t_list *list);
 void	error_handling(int error);
+void	find_values(t_data *all, int stack);
 
 int		sorted(t_list *a);
 
@@ -95,9 +100,10 @@ int		stack_len(t_list *stack);
 int		get_position(char *str);
 
 /*
-** ~~~~~~~~ TOOLS (EXTRA) ~~~
+** ~~~~~~~~ PRINT TOOLS (EXTRA) ~~~
 */
 void	print_stack(t_list *list);
 void	print_address(void *p, char *str);
+void	print_data(char *str, int data);
 
 #endif

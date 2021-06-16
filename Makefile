@@ -6,7 +6,7 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/27 11:15:23 by avuorio       #+#    #+#                  #
-#    Updated: 2021/06/10 13:26:55 by avuorio       ########   odam.nl          #
+#    Updated: 2021/06/16 14:01:31 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -15,9 +15,11 @@ NAME			=	push_swap
 SRCS_LIST		=	push_swap.c \
 						checks.c utils1.c utils2.c \
 						create_stack.c \
+						sort.c sort_small.c \
+						find_values.c \
 						add.c \
-						push.c \
-						tools.c
+						op_push.c op_swap.c op_rotate.c \
+						print_tools.c
 
 SRCS			= $(addprefix srcs/, $(SRCS_LIST))
 DIR				= srcs/
@@ -38,7 +40,7 @@ $(NAME): $(OBJS)
 	@echo "\033[38;5;205mpush_swap compiled ! :)\033[0m"
 
 $(OBJ_DIR)%.o: $(DIR)%.c
-	@mkdir -pp $(OBJ_DIR)
+	@mkdir -p $(OBJ_DIR)
 	@$(CC) -o $@ -c $< $(HEADER)
 	@echo "\033[38;5;190mcompiling project ... \033[0m"
 

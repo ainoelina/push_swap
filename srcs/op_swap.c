@@ -1,47 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   push.c                                             :+:    :+:            */
+/*   op_swap.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/06/10 13:18:29 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/10 14:26:33 by avuorio       ########   odam.nl         */
+/*   Created: 2021/06/16 12:32:46 by avuorio       #+#    #+#                 */
+/*   Updated: 2021/06/16 12:40:17 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	push(t_data *all, int dest)
+void	swap(t_data *all, int stack)
 {
-	int	temp_data;
+	int	temp;
 
-	if (dest == A)
+	if (stack == A)
 	{
-		if (all->b)
+		if (all->a && all->a->next != all->a)
 		{
-			temp_data = all->a->data;
-			delete_top(all, B);
-			insert_top(all, A, temp_data);
+			temp = all->a->data;
+			all->a->data = all->a->next->data;
+			all->a->next->data = temp;
 		}
 	}
-	if (dest == B)
+	if (stack == B)
 	{
-		if (all->a)
+		if (all->b && all->b->next != all->b)
 		{
-			temp_data = all->a->data;
-			delete_top(all, A);
-			insert_top(all, B, temp_data);
+			temp = all->b->data;
+			all->b->data = all->b->next->data;
+			all->b->next->data = temp;
 		}
 	}
 }
 
-void	push_stack(t_list **dest, t_list **src, t_data *all)
+void	swap_ab(t_data *all)
 {
-	t_list **temp;
-
-	print_address(dest, "destination");
-	print_address(src, "source");
-	if (!src)
-		return ;
+	swap(all, A);
+	swap(all, B);
 }

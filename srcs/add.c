@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:44:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/10 14:16:55 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/16 12:48:00 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,6 @@ void	delete_top(t_data *all, int stack)
 			temp = *top;
 			*top = (*top)->next;
 			temp->prev->next = *top;
-			printf("what is it???\n");
 			(*top)->prev = temp->prev;
 			free(temp);
 		}

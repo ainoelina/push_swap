@@ -1,31 +1,36 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   sort.c                                             :+:    :+:            */
+/*   tools.c                                            :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/06/10 13:12:26 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/16 13:16:52 by avuorio       ########   odam.nl         */
+/*   Created: 2021/06/10 13:09:59 by avuorio       #+#    #+#                 */
+/*   Updated: 2021/06/16 12:02:07 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_stack(t_data *all)
+void	print_address(void *p, char *str)
 {
-	int	len;
+	printf("%s add: %p\n", str, p);
+}
 
-	len = stack_len(all->a);
-	if (!sorted(all->a))
+void	print_data(char *str, int data)
+{
+	printf("%s %i\n", str, data);
+}
+
+void	print_stack(t_list *list)
+{
+	int		i;
+
+	i = 1;
+	while (list != NULL)
 	{
-		if (len <= 5)
-			sort_small(all, len);
-		// if (len > 5 && len <= 100)
-		// 	sort_medium(all);
-		// else
-		// 	sort_big(all);
+		printf("%3i: %i\n", i, list->data);
+		list = list->next;
+		i++;
 	}
-	else
-		return ;
 }

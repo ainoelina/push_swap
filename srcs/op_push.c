@@ -1,31 +1,30 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tools.c                                            :+:    :+:            */
+/*   op_push.c                                          :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/06/10 13:09:59 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/10 14:23:51 by avuorio       ########   odam.nl         */
+/*   Created: 2021/06/10 13:18:29 by avuorio       #+#    #+#                 */
+/*   Updated: 2021/06/16 12:41:52 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	print_address(void *p, char *str)
+void	push(t_list **dest, t_list **src, t_data *all)
 {
-	printf("%s add: %p\n", str, p);
-}
+	t_list	*temp;
 
-void	print_stack(t_list *list)
-{
-	int		i;
-
-	i = 1;
-	while (list != NULL)
-	{
-		printf("%3i: %i\n", i, list->data);
-		list = list->next;
-		i++;
-	}
+	if (!*src)
+		return ;
+	temp = *src;
+	*src = (*src)->next;
+	if (*src)
+		(*src)->prev = NULL;
+	if (*dest)
+		(*dest)->prev = temp;
+	temp->next = *dest;
+	*dest = temp;
+	(*dest)->prev = NULL;
 }
