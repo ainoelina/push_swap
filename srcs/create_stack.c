@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:06:29 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/17 10:16:35 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/23 10:03:12 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,5 +62,4 @@ void	create_stack(t_data *all, int argc, char **argv)
 		i++;
 	}
 	check_duplicates(all->a);
-
 }

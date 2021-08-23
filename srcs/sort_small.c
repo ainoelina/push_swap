@@ -6,11 +6,15 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/29 12:35:26 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/23 10:00:19 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** sort_small.c handles the sorting of five numbers or less.
+*/
 
 void	two(t_data *all)
 {
@@ -61,32 +65,27 @@ void	four(t_data *all)
 	push(&all->a, &all->b, all);
 }
 
-/*
-** ongelma viiden lajittelun kanssa, infinite loop
-*/
-
 void	five(t_data *all)
 {
-	t_list	*temp;
-	t_list	*end;
+	int	steps;
 
-	end = all->a->prev;
-	printf("end is %p\n", end);
+	steps = 0;
 	median(all, A);
-	temp = all->a;
-	while (temp)
+	while (steps <= 5)
 	{
-//		printf("is the problem here\n");
-		if (temp == NULL)
-			break ;
 		if (all->a->data < all->median)
+		{
 			push(&all->b, &all->a, all);
+			steps++;
+		}
 		else
+		{
 			rotate(all, A);
+			steps++;
+		}
 	}
 	three(all);
-	temp = all->b->next;
-	if (all->b->data < temp->data)
+	if (all->b->data < all->b->next->data)
 		swap(all, B);
 	push(&all->a, &all->b, all);
 	push(&all->a, &all->b, all);

@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   tools.c                                            :+:    :+:            */
+/*   print_tools.c                                      :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 13:09:59 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/16 12:02:07 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/23 09:55:05 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -29,7 +29,7 @@ void	print_stack(t_list *list)
 	i = 1;
 	while (list != NULL)
 	{
-		printf("%3i: %i\n", i, list->data);
+		printf("%3i: %i, add: %p\n", i, list->data, list);
 		list = list->next;
 		i++;
 	}

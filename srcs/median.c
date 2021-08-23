@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/17 10:36:32 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/29 12:16:36 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/23 10:02:20 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -43,6 +43,12 @@ void	find_median(int *array, int count, t_data *all)
 	quarter = count / 4;
 	all->median = array[quarter * 2];
 }
+
+/*
+** the median value is calculated by copying the values in the stack
+** into an array. the array is then sorted and median is calculated
+** in find_median function.
+*/
 
 void	median(t_data *all, int stack)
 {
