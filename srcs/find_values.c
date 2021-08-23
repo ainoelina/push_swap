@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 13:35:34 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/16 14:08:53 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/17 09:52:23 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,7 +49,7 @@ void	find_big(t_data *all, int stack)
 void	find_values(t_data *all, int stack)
 {
 	find_big(all, stack);
-	printf("biggest is %i\n", all->big);
 	find_small(all, stack);
+	printf("biggest is %i\n", all->big);
 	printf("smallest is %i\n", all->small);
 }

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/16 14:00:52 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/29 12:35:26 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -47,7 +47,49 @@ void	three(t_data *all)
 
 void	four(t_data *all)
 {
+	t_list	*temp;
+
 	find_values(all, A);
+	temp = all->a;
+	while (temp->data != all->small)
+	{
+		rotate(all, A);
+		temp = temp->next;
+	}
+	push(&all->b, &all->a, all);
+	three(all);
+	push(&all->a, &all->b, all);
+}
+
+/*
+** ongelma viiden lajittelun kanssa, infinite loop
+*/
+
+void	five(t_data *all)
+{
+	t_list	*temp;
+	t_list	*end;
+
+	end = all->a->prev;
+	printf("end is %p\n", end);
+	median(all, A);
+	temp = all->a;
+	while (temp)
+	{
+//		printf("is the problem here\n");
+		if (temp == NULL)
+			break ;
+		if (all->a->data < all->median)
+			push(&all->b, &all->a, all);
+		else
+			rotate(all, A);
+	}
+	three(all);
+	temp = all->b->next;
+	if (all->b->data < temp->data)
+		swap(all, B);
+	push(&all->a, &all->b, all);
+	push(&all->a, &all->b, all);
 }
 
 void	sort_small(t_data *all, int len)
@@ -55,9 +97,9 @@ void	sort_small(t_data *all, int len)
 	if (len == 2)
 		two(all);
 	else if (len == 3)
-	 	three(all);
+		three(all);
 	else if (len == 4)
-	 	four(all);
-	// else if (len == 5)
-	// 	five(all);
+		four(all);
+	else if (len == 5)
+		five(all);
 }

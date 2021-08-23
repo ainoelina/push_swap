@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 13:12:26 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/16 13:16:52 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/17 10:37:56 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -14,13 +14,11 @@
 
 void	sort_stack(t_data *all)
 {
-	int	len;
-
-	len = stack_len(all->a);
+	all->len = stack_len(all->a);
 	if (!sorted(all->a))
 	{
-		if (len <= 5)
-			sort_small(all, len);
+		if (all->len <= 5)
+			sort_small(all, all->len);
 		// if (len > 5 && len <= 100)
 		// 	sort_medium(all);
 		// else

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:06:29 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/10 14:08:04 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/17 10:16:35 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,6 +19,7 @@ void	init_struct(t_data *all, char **argv)
 	all->argv = argv;
 	all->small = 0;
 	all->big = 0;
+	all->len = 0;
 }
 
 void	parse_input(t_data *all, t_list *a, char *str)
@@ -61,4 +62,5 @@ void	create_stack(t_data *all, int argc, char **argv)
 		i++;
 	}
 	check_duplicates(all->a);
+
 }

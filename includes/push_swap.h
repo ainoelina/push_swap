@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/16 14:00:30 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/06/29 11:45:22 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -46,9 +46,10 @@ typedef struct s_data
 	t_list	*b;
 	char	**argv;
 	int		top;
-	int		argc;
 	int		small;
 	int		big;
+	int		len;
+	int		median;
 }				t_data;
 
 /*
@@ -68,6 +69,8 @@ void	reverse_rotate_ab(t_data *all);
 void	sort_stack(t_data *all);
 void	sort_small(t_data *all, int len);
 
+void	median(t_data *all, int stack);
+
 /*
 ** ~~~~~~~~ MODIFY STACK ~~~
 */
@@ -84,6 +87,8 @@ void	check_input(t_data *all);
 void	check_duplicates(t_list *list);
 void	error_handling(int error);
 void	find_values(t_data *all, int stack);
+void	find_big(t_data *all, int stack);
+void	find_small(t_data *all, int stack);
 
 int		sorted(t_list *a);
 

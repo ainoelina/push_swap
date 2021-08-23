@@ -6,7 +6,7 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/27 11:15:23 by avuorio       #+#    #+#                  #
-#    Updated: 2021/06/16 14:01:31 by avuorio       ########   odam.nl          #
+#    Updated: 2021/06/29 11:45:44 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -16,7 +16,7 @@ SRCS_LIST		=	push_swap.c \
 						checks.c utils1.c utils2.c \
 						create_stack.c \
 						sort.c sort_small.c \
-						find_values.c \
+						find_values.c median.c \
 						add.c \
 						op_push.c op_swap.c op_rotate.c \
 						print_tools.c
