@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/23 10:00:19 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/25 11:52:57 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ void	three(t_data *all)
 
 	top = all->a->data;
 	middle = all->a->next->data;
+	printf("whattt\n");
 	bottom = all->a->next->next->data;
 	if (top > middle && middle < bottom && bottom > top)
 		swap(all, A);
 	if (top > middle && middle < bottom && bottom < top)
-		rotate(all, A);
+		rotate_a(&all->a);
 	if (top < middle && middle > bottom && bottom < top)
 		reverse_rotate(&all->a);
 	if (top > middle && middle > bottom && bottom < top)
@@ -57,10 +58,13 @@ void	four(t_data *all)
 	temp = all->a;
 	while (temp->data != all->small)
 	{
+		printf("hmm\n");
 		rotate(all, A);
+		print_data("data now", all->a->data);
 		temp = temp->next;
 	}
 	push(&all->b, &all->a, all);
+	print_stack(all->a);
 	three(all);
 	push(&all->a, &all->b, all);
 }

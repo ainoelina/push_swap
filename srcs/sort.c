@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 13:12:26 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/17 10:37:56 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/25 14:01:16 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -19,10 +19,8 @@ void	sort_stack(t_data *all)
 	{
 		if (all->len <= 5)
 			sort_small(all, all->len);
-		// if (len > 5 && len <= 100)
-		// 	sort_medium(all);
-		// else
-		// 	sort_big(all);
+		if (all->len > 5 && all->len <= 100)
+			sort_medium(all);
 	}
 	else
 		return ;

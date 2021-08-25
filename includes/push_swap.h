@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/29 11:45:22 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/25 13:07:18 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,12 +62,14 @@ void	rotate(t_data *all, int stack);
 void	rotate_ab(t_data *all);
 void	reverse_rotate(t_list **stack);
 void	reverse_rotate_ab(t_data *all);
+void	rotate_a(t_list **a);
 
 /*
 ** ~~~~~~~~ SORTING ALGORITHM ~~~
 */
 void	sort_stack(t_data *all);
 void	sort_small(t_data *all, int len);
+void	sort_medium(t_data *all);
 
 void	median(t_data *all, int stack);
 
@@ -91,6 +93,8 @@ void	find_big(t_data *all, int stack);
 void	find_small(t_data *all, int stack);
 
 int		sorted(t_list *a);
+
+t_list	*last_node(t_list *list);
 
 /*
 ** ~~~~~~~~ UTILS ~~~
