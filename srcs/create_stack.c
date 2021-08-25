@@ -6,21 +6,11 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:06:29 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/23 10:03:12 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/25 16:13:45 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
-
-void	init_struct(t_data *all, char **argv)
-{
-	all->a = NULL;
-	all->b = NULL;
-	all->argv = argv;
-	all->small = 0;
-	all->big = 0;
-	all->len = 0;
-}
 
 void	parse_input(t_data *all, t_list *a, char *str)
 {
@@ -30,8 +20,6 @@ void	parse_input(t_data *all, t_list *a, char *str)
 	{
 		while (*str == ' ')
 			str++;
-		if (*str == '\0')
-			break ;
 		if (!(is_digit(*str)) && *str != ' ' && *str != '-' && *str != '+')
 			error_handling(INPUT_INVALID);
 		if ((*str == '-' || *str == '+') && (!is_digit(*(str + 1))
@@ -41,6 +29,8 @@ void	parse_input(t_data *all, t_list *a, char *str)
 			&& (*(str + 1) != '\0'))
 			error_handling(INPUT_INVALID);
 		data = my_atoi(str);
+		if (data > MAX_INT || data < MIN_INT)
+			error_handling(INPUT_INVALID);
 		insert_last(all, A, data);
 		if (*str == '-' || *str == '+')
 			str++;

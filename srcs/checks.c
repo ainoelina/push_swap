@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 09:07:03 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/25 10:51:34 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/25 15:34:24 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,8 +16,6 @@ void	error_handling(int error)
 {
 	if (error == INPUT_INVALID)
 		write(1, "Error\nInvalid argument input.", 30);
-	if (error == INT_MAX_MIN)
-		write(1, "Error\nArgument bigger/smaller than an integer.", 47);
 	if (error == DUPLICATE_ARGS)
 		write(1, "Error\nDuplicate integer(s) in arguments.", 41);
 	if (error == MALLOC_FAIL)

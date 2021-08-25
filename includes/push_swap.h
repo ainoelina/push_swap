@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/25 13:07:18 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/25 16:28:17 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,7 @@
 */
 
 # define INPUT_INVALID -1
-# define INT_MAX_MIN -2
+# define UNUsed ERROR -2
 # define DUPLICATE_ARGS -3
 # define MALLOC_FAIL -4
 
@@ -33,6 +33,22 @@
 # define A 1
 # define B 2
 
+/*
+** ~~~~~~~~ INT VALUES ~~~
+*/
+# define MAX_INT 2147483647
+# define MIN_INT -2147483648
+
+typedef struct s_operations
+{
+	int	small;
+	int	big;
+	int	rotate_small;
+	int	rotate_big;
+	int	reverse_small;
+	int	reverse_big;
+}				t_operations;
+
 typedef struct s_list
 {
 	int				data;
@@ -42,14 +58,15 @@ typedef struct s_list
 
 typedef struct s_data
 {
-	t_list	*a;
-	t_list	*b;
-	char	**argv;
-	int		top;
-	int		small;
-	int		big;
-	int		len;
-	int		median;
+	t_list			*a;
+	t_list			*b;
+	t_operations	*ops;
+	char			**argv;
+	int				top;
+	int				min;
+	int				max;
+	int				len;
+	int				median;
 }				t_data;
 
 /*
@@ -70,6 +87,7 @@ void	rotate_a(t_list **a);
 void	sort_stack(t_data *all);
 void	sort_small(t_data *all, int len);
 void	sort_medium(t_data *all);
+void	define_operations(t_data *all, int stack);
 
 void	median(t_data *all, int stack);
 
@@ -89,8 +107,8 @@ void	check_input(t_data *all);
 void	check_duplicates(t_list *list);
 void	error_handling(int error);
 void	find_values(t_data *all, int stack);
-void	find_big(t_data *all, int stack);
-void	find_small(t_data *all, int stack);
+void	find_max(t_data *all, int stack);
+void	find_min(t_data *all, int stack);
 
 int		sorted(t_list *a);
 
@@ -107,6 +125,8 @@ int		my_atoi(char *str);
 int		is_digit(int c);
 int		stack_len(t_list *stack);
 int		get_position(char *str);
+
+void	init_struct(t_data *all, char **argv);
 
 /*
 ** ~~~~~~~~ PRINT TOOLS (EXTRA) ~~~
