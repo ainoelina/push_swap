@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/25 15:42:06 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 10:49:00 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -56,7 +56,7 @@ void	sort_medium(t_data *all)
 		while (all->b)
 		{
 			find_values(all, B);
-//			define_operations(all, B);
+			define_operations(all, B);
 		}
 		printf("first push completed\n");
 		break ;
