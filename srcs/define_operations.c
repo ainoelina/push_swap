@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 14:11:55 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:17:13 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:48:24 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -127,29 +127,26 @@ void	move_small(t_data *all, t_operations *ops, int stack)
 ** stack a, min or max value in stack b.
 */
 
-void	define_operations(t_data *all, int stack)
+void	define_operations(t_data *all, t_operations *ops, int stack)
 {
-	t_operations	ops;
-
-	init_operations(all, &ops);
-	move_small(all, all->ops, B);
-	move_big(all, all->ops, B);
+	move_small(all, all->ops, stack);
+	move_big(all, all->ops, stack);
 	print_values(all);
-	if ((ops.rotate_big >= ops.rotate_small
-			&& ops.rotate_big >= ops.reverse_small) && ops.rotate_big != -1)
-		ops.rotate_big = -1;
-	else if ((ops.reverse_big >= ops.rotate_small
-			&& ops.reverse_big >= ops.reverse_small) && ops.reverse_big != -1)
-		ops.reverse_big = -1;
-	else if ((ops.rotate_small >= ops.rotate_big
-			&& ops.rotate_small >= ops.reverse_big) && ops.rotate_small != -1)
-		ops.rotate_small = -1;
-	else if ((ops.reverse_small >= ops.rotate_big
-			&& ops.reverse_small >= ops.reverse_big) && ops.reverse_small != -1)
-		ops.reverse_small = -1;
-	if (ops.rotate_big != -1 || ops.reverse_big != -1)
-		ops.big = 1;
-	else if (ops.rotate_small != -1 || ops.reverse_small != -1)
-		ops.small = 1;
+	if ((ops->rotate_big >= ops->rotate_small
+			&& ops->rotate_big >= ops->reverse_small) && ops->rotate_big != -1)
+		ops->rotate_big = -1;
+	else if ((ops->reverse_big >= ops->rotate_small
+			&& ops->reverse_big >= ops->reverse_small) && ops->reverse_big != -1)
+		ops->reverse_big = -1;
+	else if ((ops->rotate_small >= ops->rotate_big
+			&& ops->rotate_small >= ops->reverse_big) && ops->rotate_small != -1)
+		ops->rotate_small = -1;
+	else if ((ops->reverse_small >= ops->rotate_big
+			&& ops->reverse_small >= ops->reverse_big) && ops->reverse_small != -1)
+		ops->reverse_small = -1;
+	if (ops->rotate_big != -1 || ops->reverse_big != -1)
+		ops->big = 1;
+	else if (ops->rotate_small != -1 || ops->reverse_small != -1)
+		ops->small = 1;
 	print_values(all);
 }

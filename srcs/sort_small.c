@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 11:46:26 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:25:30 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -62,9 +62,9 @@ void	four(t_data *all)
 		rotate(all, A);
 		temp = temp->next;
 	}
-	push(&all->b, &all->a, all);
+	push(&all->b, &all->a);
 	three(all);
-	push(&all->a, &all->b, all);
+	push(&all->a, &all->b);
 }
 
 void	five(t_data *all)
@@ -77,7 +77,7 @@ void	five(t_data *all)
 	{
 		if (all->a->data < all->median)
 		{
-			push(&all->b, &all->a, all);
+			push(&all->b, &all->a);
 			steps++;
 		}
 		else
@@ -89,8 +89,8 @@ void	five(t_data *all)
 	three(all);
 	if (all->b->data < all->b->next->data)
 		swap(all, B);
-	push(&all->a, &all->b, all);
-	push(&all->a, &all->b, all);
+	push(&all->a, &all->b);
+	push(&all->a, &all->b);
 }
 
 void	sort_small(t_data *all, int len)

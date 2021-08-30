@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:17:00 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:34:32 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -73,7 +73,7 @@ typedef struct s_data
 /*
 ** ~~~~~~~~ OPERATIONS ~~~
 */
-void	push(t_list **dest, t_list **src, t_data *all);
+void	push(t_list **dest, t_list **src);
 void	swap(t_data *all, int stack);
 void	swap_ab(t_data *all);
 void	rotate(t_data *all, int stack);
@@ -88,7 +88,7 @@ void	rotate_a(t_list **a);
 void	sort_stack(t_data *all);
 void	sort_small(t_data *all, int len);
 void	sort_medium(t_data *all);
-void	define_operations(t_data *all, int stack);
+void	define_operations(t_data *all, t_operations *ops, int stack);
 
 void	median(t_data *all, int stack);
 

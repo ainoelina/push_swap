@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:16:38 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:35:24 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,7 +30,7 @@ void	push_chunk(t_data *all, int chunk)
 		if (temp == all->last_node)
 			break ;
 		if (chunk == 1 && temp->data <= all->median)
-			push(&all->b, &all->a, all);
+			push(&all->b, &all->a);
 		else
 			rotate(all, A);
 		temp = all->a;
@@ -41,7 +41,7 @@ void	do_rotate(t_data *all, t_operations *ops)
 {
 	check_big(all, ops);
 	check_small(all, ops);
-	push(&all->a, &all->b, all);
+	push(&all->a, &all->b);
 	if (ops->small)
 		rotate(all, A);
 	if (ops->big || all->b == NULL)
@@ -71,8 +71,10 @@ void	push_stack(t_data *all, t_list *stack)
 
 void	sort_medium(t_data *all)
 {
-	int	chunk;
+	t_operations	ops;
+	int				chunk;
 
+	init_operations(all, &ops);
 	chunk = 1;
 	median(all, A);
 	while (all->a)
@@ -81,18 +83,18 @@ void	sort_medium(t_data *all)
 		while (all->b)
 		{
 			find_values(all, B);
-			define_operations(all, B);
-			if (all->b && (all->ops->rotate_big >= 0
-					|| all->ops->reverse_big >= 0 || all->ops->rotate_small >= 0
-					|| all->ops->reverse_small >= 0))
+			define_operations(all, &ops, B);
+			if (all->b && (ops.rotate_big >= 0
+					|| ops.reverse_big >= 0 || ops.rotate_small >= 0
+					|| ops.reverse_small >= 0))
 			{
 				push_stack(all, all->b);
 			}
 		}
-		while (all->ops->tracker)
+		while (ops.tracker)
 		{
 			rotate(all, A);
-			all->ops->tracker--;
+			ops.tracker--;
 		}
 		chunk++;
 		if (chunk == 3)

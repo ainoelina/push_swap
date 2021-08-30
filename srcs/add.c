@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:44:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/25 10:51:38 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:23:43 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,7 +16,7 @@ void	check_for_stack(t_data *all, t_list **list, int stack)
 {
 	if (stack == A)
 		*list = all->a;
-	if (stack == B)
+	else
 		*list = all->b;
 }
 
@@ -27,7 +27,7 @@ void	insert_top(t_data *all, int stack, int data)
 
 	if (stack == A)
 		head = &all->a;
-	else if (stack == B)
+	else
 		head = &all->b;
 	if (*head)
 	{
@@ -59,7 +59,7 @@ void	delete_top(t_data *all, int stack)
 
 	if (stack == A)
 		top = &all->a;
-	else if (stack == B)
+	else
 		top = &all->b;
 	if (*top)
 	{
@@ -87,7 +87,7 @@ void	insert_last(t_data *all, int stack, int data)
 
 	if (stack == A)
 		head = &all->a;
-	else if (stack == B)
+	else
 		head = &all->b;
 	temp = (t_list *)malloc(sizeof(t_list));
 	last = all->a;

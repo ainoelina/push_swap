@@ -6,7 +6,7 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/27 11:15:23 by avuorio       #+#    #+#                  #
-#    Updated: 2021/08/30 13:04:59 by avuorio       ########   odam.nl          #
+#    Updated: 2021/08/30 14:21:05 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -31,7 +31,7 @@ OBJ_DIR			= objs/
 
 HEADER			= -I ./includes
 
-#CFLAGS 			= -Wall -Wextra -Werror !! REMEMBER TO ADD
+CFLAGS 			= -Wall -Wextra -Werror
 RM				= rm -f
 
 all:			$(NAME)
@@ -42,7 +42,7 @@ $(NAME): $(OBJS)
 
 $(OBJ_DIR)%.o: $(DIR)%.c
 	@mkdir -p $(OBJ_DIR)
-	@$(CC) -o $@ -c $< $(HEADER)
+	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADER)
 	@echo "\033[38;5;190mcompiling project ... \033[0m"
 
 clean:

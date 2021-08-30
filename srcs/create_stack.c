@@ -6,13 +6,13 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:06:29 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/25 16:13:45 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:21:50 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	parse_input(t_data *all, t_list *a, char *str)
+void	parse_input(t_data *all, char *str)
 {
 	int	data;
 
@@ -48,7 +48,7 @@ void	create_stack(t_data *all, int argc, char **argv)
 	check_input(all);
 	while (i < argc)
 	{
-		parse_input(all, all->a, argv[i]);
+		parse_input(all, argv[i]);
 		i++;
 	}
 	check_duplicates(all->a);
