@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/25 16:28:17 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:17:00 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,7 +22,6 @@
 */
 
 # define INPUT_INVALID -1
-# define UNUsed ERROR -2
 # define DUPLICATE_ARGS -3
 # define MALLOC_FAIL -4
 
@@ -47,6 +46,7 @@ typedef struct s_operations
 	int	rotate_big;
 	int	reverse_small;
 	int	reverse_big;
+	int	tracker;
 }				t_operations;
 
 typedef struct s_list
@@ -61,6 +61,7 @@ typedef struct s_data
 	t_list			*a;
 	t_list			*b;
 	t_operations	*ops;
+	void			*last_node;
 	char			**argv;
 	int				top;
 	int				min;
@@ -91,6 +92,9 @@ void	define_operations(t_data *all, int stack);
 
 void	median(t_data *all, int stack);
 
+void	check_big(t_data *all, t_operations *ops);
+void	check_small(t_data *all, t_operations *ops);
+
 /*
 ** ~~~~~~~~ MODIFY STACK ~~~
 */
@@ -109,10 +113,9 @@ void	error_handling(int error);
 void	find_values(t_data *all, int stack);
 void	find_max(t_data *all, int stack);
 void	find_min(t_data *all, int stack);
+void	last_node(t_data *all, int stack);
 
 int		sorted(t_list *a);
-
-t_list	*last_node(t_list *list);
 
 /*
 ** ~~~~~~~~ UTILS ~~~
@@ -127,12 +130,15 @@ int		stack_len(t_list *stack);
 int		get_position(char *str);
 
 void	init_struct(t_data *all, char **argv);
+void	init_operations(t_data *all, t_operations *ops);
+void	reset(t_operations *ops);
 
 /*
 ** ~~~~~~~~ PRINT TOOLS (EXTRA) ~~~
 */
-void	print_stack(t_list *list);
+void	print_stack(t_list *list, int stack);
 void	print_address(void *p, char *str);
 void	print_data(char *str, int data);
+void	print_values(t_data *all);
 
 #endif

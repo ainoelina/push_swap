@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:01:10 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/23 09:55:12 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 11:49:04 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -23,6 +23,6 @@ int	main(int argc, char **argv)
 	}
 	create_stack(&all, argc, argv);
 	sort_stack(&all);
-	print_stack(all.a);
-	print_stack(all.b);
+	print_stack(all.a, A);
+	print_stack(all.b, B);
 }

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 13:09:59 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/23 09:55:05 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 12:32:46 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,15 +22,26 @@ void	print_data(char *str, int data)
 	printf("%s %i\n", str, data);
 }
 
-void	print_stack(t_list *list)
+void	print_stack(t_list *list, int stack)
 {
 	int		i;
 
 	i = 1;
 	while (list != NULL)
 	{
-		printf("%3i: %i, add: %p\n", i, list->data, list);
+		if (stack == A)
+			printf("A: %3i: %i, add: %p\n", i, list->data, list);
+		else
+			printf("B: %3i: %i, add: %p\n", i, list->data, list);
 		list = list->next;
 		i++;
 	}
+}
+
+void	print_values(t_data *all)
+{
+	print_data("big rotate:", all->ops->rotate_big);
+	print_data("big reverse:", all->ops->reverse_big);
+	print_data("small rotate:", all->ops->rotate_small);
+	print_data("small reverse:", all->ops->reverse_small);
 }

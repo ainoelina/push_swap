@@ -6,11 +6,16 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 14:11:55 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 10:37:46 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:17:13 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** count functions count the number of moves to move min and max values in stack
+** to either top or bottom of the stack.
+*/
 
 void	count_top(t_data *all, t_operations *ops, int stack, int opt)
 {
@@ -44,9 +49,15 @@ void	count_bottom(t_data *all, t_operations *ops, int stack, int opt)
 	int		nb;
 
 	if (stack == A)
-		temp = all->a;
+	{
+		last_node(all, A);
+		temp = all->last_node;
+	}
 	else
-		temp = all->b;
+	{
+		last_node(all, B);
+		temp = all->last_node;
+	}
 	if (temp)
 	{
 		if (opt == 1)
@@ -60,7 +71,6 @@ void	count_bottom(t_data *all, t_operations *ops, int stack, int opt)
 			else
 				ops->reverse_big++;
 			temp = temp->prev;
-			print_address(temp, "temp add: ");
 		}
 		if (opt == 1)
 			ops->reverse_small++;
@@ -111,12 +121,35 @@ void	move_small(t_data *all, t_operations *ops, int stack)
 	}
 }
 
+/*
+** after defining the number of moves, define operations function compares
+** the calculated values and defines the most efficient option to move to
+** stack a, min or max value in stack b.
+*/
+
 void	define_operations(t_data *all, int stack)
 {
+	t_operations	ops;
+
+	init_operations(all, &ops);
 	move_small(all, all->ops, B);
 	move_big(all, all->ops, B);
-	print_data("big rotate: ", all->ops->rotate_big);
-	print_data("big reverse: ", all->ops->reverse_big);
-	print_data("small rotate: ", all->ops->rotate_small);
-	print_data("small reverse: ", all->ops->reverse_small);
+	print_values(all);
+	if ((ops.rotate_big >= ops.rotate_small
+			&& ops.rotate_big >= ops.reverse_small) && ops.rotate_big != -1)
+		ops.rotate_big = -1;
+	else if ((ops.reverse_big >= ops.rotate_small
+			&& ops.reverse_big >= ops.reverse_small) && ops.reverse_big != -1)
+		ops.reverse_big = -1;
+	else if ((ops.rotate_small >= ops.rotate_big
+			&& ops.rotate_small >= ops.reverse_big) && ops.rotate_small != -1)
+		ops.rotate_small = -1;
+	else if ((ops.reverse_small >= ops.rotate_big
+			&& ops.reverse_small >= ops.reverse_big) && ops.reverse_small != -1)
+		ops.reverse_small = -1;
+	if (ops.rotate_big != -1 || ops.reverse_big != -1)
+		ops.big = 1;
+	else if (ops.rotate_small != -1 || ops.reverse_small != -1)
+		ops.small = 1;
+	print_values(all);
 }
