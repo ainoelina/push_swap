@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 14:11:55 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:48:24 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:54:47 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -136,13 +136,16 @@ void	define_operations(t_data *all, t_operations *ops, int stack)
 			&& ops->rotate_big >= ops->reverse_small) && ops->rotate_big != -1)
 		ops->rotate_big = -1;
 	else if ((ops->reverse_big >= ops->rotate_small
-			&& ops->reverse_big >= ops->reverse_small) && ops->reverse_big != -1)
+			&& ops->reverse_big >= ops->reverse_small)
+		&& ops->reverse_big != -1)
 		ops->reverse_big = -1;
 	else if ((ops->rotate_small >= ops->rotate_big
-			&& ops->rotate_small >= ops->reverse_big) && ops->rotate_small != -1)
+			&& ops->rotate_small >= ops->reverse_big)
+		&& ops->rotate_small != -1)
 		ops->rotate_small = -1;
 	else if ((ops->reverse_small >= ops->rotate_big
-			&& ops->reverse_small >= ops->reverse_big) && ops->reverse_small != -1)
+			&& ops->reverse_small >= ops->reverse_big)
+		&& ops->reverse_small != -1)
 		ops->reverse_small = -1;
 	if (ops->rotate_big != -1 || ops->reverse_big != -1)
 		ops->big = 1;

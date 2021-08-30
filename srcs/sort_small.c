@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:25:30 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:50:27 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,7 +31,6 @@ void	three(t_data *all)
 
 	top = all->a->data;
 	middle = all->a->next->data;
-	printf("whattt\n");
 	bottom = all->a->next->next->data;
 	if (top > middle && middle < bottom && bottom > top)
 		swap(all, A);

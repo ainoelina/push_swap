@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:35:24 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/08/30 14:53:53 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -69,6 +69,15 @@ void	push_stack(t_data *all, t_list *stack)
 	}
 }
 
+void	do_sorting(t_data *all, t_operations *ops)
+{
+	find_values(all, B);
+	define_operations(all, ops, B);
+	if (all->b && (ops->rotate_big >= 0 || ops->reverse_big >= 0
+			|| ops->rotate_small >= 0 || ops->reverse_small >= 0))
+		push_stack(all, all->b);
+}
+
 void	sort_medium(t_data *all)
 {
 	t_operations	ops;
@@ -81,16 +90,7 @@ void	sort_medium(t_data *all)
 	{
 		push_chunk(all, chunk);
 		while (all->b)
-		{
-			find_values(all, B);
-			define_operations(all, &ops, B);
-			if (all->b && (ops.rotate_big >= 0
-					|| ops.reverse_big >= 0 || ops.rotate_small >= 0
-					|| ops.reverse_small >= 0))
-			{
-				push_stack(all, all->b);
-			}
-		}
+			do_sorting(all, &ops);
 		while (ops.tracker)
 		{
 			rotate(all, A);
