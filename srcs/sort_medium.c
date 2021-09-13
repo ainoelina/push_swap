@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:53:53 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 08:54:27 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,6 +21,7 @@
 void	push_chunk(t_data *all, int chunk)
 {
 	t_list	*temp;
+	int	flag = 0;
 
 	temp = all->a;
 	last_node(all, A);
@@ -28,13 +29,20 @@ void	push_chunk(t_data *all, int chunk)
 	while (1)
 	{
 		if (temp == all->last_node)
-			break ;
+			flag = 1;
 		if (chunk == 1 && temp->data <= all->median)
 			push(&all->b, &all->a);
+		else if (chunk == 2 && temp->data > all->median)
+			push(&all->b, &all->a);
+		else if (temp->data == all->min)
+			break ;
 		else
 			rotate(all, A);
+		if (flag == 1)
+			break ;
 		temp = all->a;
 	}
+	reset(all->ops);
 }
 
 void	do_rotate(t_data *all, t_operations *ops)
@@ -77,6 +85,10 @@ void	do_sorting(t_data *all, t_operations *ops)
 			|| ops->rotate_small >= 0 || ops->reverse_small >= 0))
 		push_stack(all, all->b);
 }
+
+/*
+** sort_medium sorts stacks with 100 integers or less. 
+*/
 
 void	sort_medium(t_data *all)
 {
