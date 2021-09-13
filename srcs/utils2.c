@@ -6,21 +6,25 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 12:53:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 11:01:55 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 13:32:39 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	stack_len(t_list *stack)
+int	stack_len(t_all *all)
 {
-	int	len;
+	t_list	*temp;
+	int		len;
 
 	len = 0;
-	while (stack)
+	temp = all->a;
+	while (temp)
 	{
-		stack = stack->next;
 		len++;
+		if (temp == all->a->prev)
+			break ;
+		temp = temp->next;
 	}
 	return (len);
 }
@@ -53,7 +57,7 @@ int	sorted(t_list *a)
 	return (1);
 }
 
-void	last_node(t_data *all, int stack)
+void	last_node(t_all *all, int stack)
 {
 	t_list	*temp;
 

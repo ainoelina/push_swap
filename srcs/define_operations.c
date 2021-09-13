@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 14:11:55 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:54:47 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 10:58:44 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,7 +17,7 @@
 ** to either top or bottom of the stack.
 */
 
-void	count_top(t_data *all, t_operations *ops, int stack, int opt)
+void	count_top(t_all *all, t_operations *ops, int stack, int opt)
 {
 	t_list	*temp;
 	int		nb;
@@ -35,15 +35,15 @@ void	count_top(t_data *all, t_operations *ops, int stack, int opt)
 		while (temp->data != nb)
 		{
 			if (opt == 1)
-				ops->rotate_small++;
+				ops->r_small++;
 			else
-				ops->rotate_big++;
+				ops->r_big++;
 			temp = temp->next;
 		}
 	}
 }
 
-void	count_bottom(t_data *all, t_operations *ops, int stack, int opt)
+void	count_bottom(t_all *all, t_operations *ops, int stack, int opt)
 {
 	t_list	*temp;
 	int		nb;
@@ -67,19 +67,19 @@ void	count_bottom(t_data *all, t_operations *ops, int stack, int opt)
 		while (temp->data != nb)
 		{
 			if (opt == 1)
-				ops->reverse_small++;
+				ops->rr_small++;
 			else
-				ops->reverse_big++;
+				ops->rr_big++;
 			temp = temp->prev;
 		}
 		if (opt == 1)
-			ops->reverse_small++;
+			ops->rr_small++;
 		else
-			ops->reverse_big++;
+			ops->rr_big++;
 	}
 }
 
-void	move_big(t_data *all, t_operations *ops, int stack)
+void	move_big(t_all *all, t_operations *ops, int stack)
 {
 	t_list	*temp;
 	int		opt;
@@ -93,14 +93,14 @@ void	move_big(t_data *all, t_operations *ops, int stack)
 	{
 		count_top(all, ops, stack, opt);
 		count_bottom(all, ops, stack, opt);
-		if (ops->rotate_big <= ops->reverse_big)
-			ops->reverse_big = -1;
+		if (ops->r_big <= ops->rr_big)
+			ops->rr_big = -1;
 		else
-			ops->rotate_big = -1;
+			ops->r_big = -1;
 	}
 }
 
-void	move_small(t_data *all, t_operations *ops, int stack)
+void	move_small(t_all *all, t_operations *ops, int stack)
 {
 	t_list	*temp;
 	int		opt;
@@ -114,10 +114,10 @@ void	move_small(t_data *all, t_operations *ops, int stack)
 	{
 		count_top(all, ops, stack, opt);
 		count_bottom(all, ops, stack, opt);
-		if (ops->rotate_small <= ops->reverse_small)
-			ops->reverse_small = -1;
+		if (ops->r_small <= ops->rr_small)
+			ops->rr_small = -1;
 		else
-			ops->reverse_small = -1;
+			ops->rr_small = -1;
 	}
 }
 
@@ -127,29 +127,29 @@ void	move_small(t_data *all, t_operations *ops, int stack)
 ** stack a, min or max value in stack b.
 */
 
-void	define_operations(t_data *all, t_operations *ops, int stack)
+void	define_operations(t_all *all, t_operations *ops, int stack)
 {
 	move_small(all, all->ops, stack);
 	move_big(all, all->ops, stack);
 	print_values(all);
-	if ((ops->rotate_big >= ops->rotate_small
-			&& ops->rotate_big >= ops->reverse_small) && ops->rotate_big != -1)
-		ops->rotate_big = -1;
-	else if ((ops->reverse_big >= ops->rotate_small
-			&& ops->reverse_big >= ops->reverse_small)
-		&& ops->reverse_big != -1)
-		ops->reverse_big = -1;
-	else if ((ops->rotate_small >= ops->rotate_big
-			&& ops->rotate_small >= ops->reverse_big)
-		&& ops->rotate_small != -1)
-		ops->rotate_small = -1;
-	else if ((ops->reverse_small >= ops->rotate_big
-			&& ops->reverse_small >= ops->reverse_big)
-		&& ops->reverse_small != -1)
-		ops->reverse_small = -1;
-	if (ops->rotate_big != -1 || ops->reverse_big != -1)
+	if ((ops->r_big >= ops->r_small
+			&& ops->r_big >= ops->rr_small) && ops->r_big != -1)
+		ops->r_big = -1;
+	else if ((ops->rr_big >= ops->r_small
+			&& ops->rr_big >= ops->rr_small)
+		&& ops->rr_big != -1)
+		ops->rr_big = -1;
+	else if ((ops->r_small >= ops->r_big
+			&& ops->r_small >= ops->rr_big)
+		&& ops->r_small != -1)
+		ops->r_small = -1;
+	else if ((ops->rr_small >= ops->r_big
+			&& ops->rr_small >= ops->rr_big)
+		&& ops->rr_small != -1)
+		ops->rr_small = -1;
+	if (ops->r_big != -1 || ops->rr_big != -1)
 		ops->big = 1;
-	else if (ops->rotate_small != -1 || ops->reverse_small != -1)
+	else if (ops->r_small != -1 || ops->rr_small != -1)
 		ops->small = 1;
 	print_values(all);
 }

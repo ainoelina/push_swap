@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 08:54:27 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 10:55:47 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,12 @@
 ** the chunk number.
 */
 
-void	push_chunk(t_data *all, int chunk)
+void	push_chunk(t_all *all, int chunk)
 {
 	t_list	*temp;
-	int	flag = 0;
+	int		flag;
 
+	flag = 0;
 	temp = all->a;
 	last_node(all, A);
 	find_values(all, A);
@@ -45,7 +46,7 @@ void	push_chunk(t_data *all, int chunk)
 	reset(all->ops);
 }
 
-void	do_rotate(t_data *all, t_operations *ops)
+void	do_rotate(t_all *all, t_operations *ops)
 {
 	check_big(all, ops);
 	check_small(all, ops);
@@ -57,7 +58,7 @@ void	do_rotate(t_data *all, t_operations *ops)
 	reset(ops);
 }
 
-void	push_stack(t_data *all, t_list *stack)
+void	push_stack(t_all *all, t_list *stack)
 {
 	last_node(all, B);
 	while (1)
@@ -77,12 +78,12 @@ void	push_stack(t_data *all, t_list *stack)
 	}
 }
 
-void	do_sorting(t_data *all, t_operations *ops)
+void	do_sorting(t_all *all, t_operations *ops)
 {
 	find_values(all, B);
 	define_operations(all, ops, B);
-	if (all->b && (ops->rotate_big >= 0 || ops->reverse_big >= 0
-			|| ops->rotate_small >= 0 || ops->reverse_small >= 0))
+	if (all->b && (ops->r_big >= 0 || ops->rr_big >= 0 || ops->r_small >= 0
+			|| ops->rr_small >= 0))
 		push_stack(all, all->b);
 }
 
@@ -90,7 +91,7 @@ void	do_sorting(t_data *all, t_operations *ops)
 ** sort_medium sorts stacks with 100 integers or less. 
 */
 
-void	sort_medium(t_data *all)
+void	sort_medium(t_all *all)
 {
 	t_operations	ops;
 	int				chunk;

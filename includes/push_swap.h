@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:34:32 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 14:29:44 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -22,8 +22,8 @@
 */
 
 # define INPUT_INVALID -1
-# define DUPLICATE_ARGS -3
-# define MALLOC_FAIL -4
+# define DUPLICATE_ARGS -2
+# define MALLOC_FAIL -3
 
 /*
 ** ~~~~~~~~ STACKS ~~~
@@ -31,6 +31,21 @@
 
 # define A 1
 # define B 2
+
+/*
+** ~~~~~~~~ OPERATIONS ~~~
+*/
+# define PA 1
+# define PB 2
+# define RA 3
+# define RB 4
+# define RR 5
+# define RRA 6
+# define RRB 7
+# define RRR 8
+# define SA 9
+# define SB 10
+# define SS 11
 
 /*
 ** ~~~~~~~~ INT VALUES ~~~
@@ -42,10 +57,10 @@ typedef struct s_operations
 {
 	int	small;
 	int	big;
-	int	rotate_small;
-	int	rotate_big;
-	int	reverse_small;
-	int	reverse_big;
+	int	r_small;
+	int	r_big;
+	int	rr_small;
+	int	rr_big;
 	int	tracker;
 }				t_operations;
 
@@ -56,7 +71,7 @@ typedef struct s_list
 	struct s_list	*prev;
 }				t_list;
 
-typedef struct s_data
+typedef struct s_all
 {
 	t_list			*a;
 	t_list			*b;
@@ -68,52 +83,52 @@ typedef struct s_data
 	int				max;
 	int				len;
 	int				median;
-}				t_data;
+}				t_all;
 
 /*
 ** ~~~~~~~~ OPERATIONS ~~~
 */
-void	push(t_list **dest, t_list **src);
-void	swap(t_data *all, int stack);
-void	swap_ab(t_data *all);
-void	rotate(t_data *all, int stack);
-void	rotate_ab(t_data *all);
+void	push(t_list **dest, t_list **src, int op);
+void	swap(t_all *all, int stack);
+void	swap_ab(t_all *all);
+void	rotate(t_all *all, int stack);
+void	rotate_ab(t_all *all);
 void	reverse_rotate(t_list **stack);
-void	reverse_rotate_ab(t_data *all);
+void	reverse_rotate_ab(t_all *all);
 void	rotate_a(t_list **a);
 
 /*
 ** ~~~~~~~~ SORTING ALGORITHM ~~~
 */
-void	sort_stack(t_data *all);
-void	sort_small(t_data *all, int len);
-void	sort_medium(t_data *all);
-void	define_operations(t_data *all, t_operations *ops, int stack);
+void	sort_stack(t_all *all);
+void	sort_small(t_all *all, int len);
+void	sort_medium(t_all *all);
+void	define_operations(t_all *all, t_operations *ops, int stack);
 
-void	median(t_data *all, int stack);
+void	median(t_all *all, int stack);
 
-void	check_big(t_data *all, t_operations *ops);
-void	check_small(t_data *all, t_operations *ops);
+void	check_big(t_all *all, t_operations *ops);
+void	check_small(t_all *all, t_operations *ops);
 
 /*
 ** ~~~~~~~~ MODIFY STACK ~~~
 */
 
-void	create_stack(t_data *all, int argc, char **argv);
-void	insert_last(t_data *all, int stack, int data);
-void	insert_top(t_data *all, int stack, int data);
-void	delete_top(t_data *all, int stack);
+void	create_stack(t_all *all, int argc, char **argv);
+void	insert_last(t_all *all, int stack, int data);
+void	insert_top(t_all *all, int stack, int data);
+void	delete_top(t_all *all, int stack);
 
 /*
 ** ~~~~~~~~ CHECKS ~~~
 */
-void	check_input(t_data *all);
-void	check_duplicates(t_list *list);
-void	error_handling(int error);
-void	find_values(t_data *all, int stack);
-void	find_max(t_data *all, int stack);
-void	find_min(t_data *all, int stack);
-void	last_node(t_data *all, int stack);
+void	check_input(t_all *all);
+void	check_duplicates(t_list *list, t_all *all);
+void	error_handling(int error, t_all *all);
+void	find_values(t_all *all, int stack);
+void	find_max(t_all *all, int stack);
+void	find_min(t_all *all, int stack);
+void	last_node(t_all *all, int stack);
 
 int		sorted(t_list *a);
 
@@ -126,19 +141,21 @@ void	*malloc_memory(size_t size);
 int		ft_strlen(char *str);
 int		my_atoi(char *str);
 int		is_digit(int c);
-int		stack_len(t_list *stack);
+int		stack_len(t_all *all);
 int		get_position(char *str);
 
-void	init_struct(t_data *all, char **argv);
-void	init_operations(t_data *all, t_operations *ops);
+t_all	*init_struct(t_all *all, char **argv);
+
+void	init_operations(t_all *all, t_operations *ops);
 void	reset(t_operations *ops);
 
 /*
 ** ~~~~~~~~ PRINT TOOLS (EXTRA) ~~~
 */
-void	print_stack(t_list *list, int stack);
+void   print_stack(t_all *all, t_list *list, int stack, char c);
 void	print_address(void *p, char *str);
+void	print_all(char *str, int data);
+void	print_values(t_all *all);
 void	print_data(char *str, int data);
-void	print_values(t_data *all);
 
 #endif

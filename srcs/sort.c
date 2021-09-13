@@ -6,15 +6,15 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 13:12:26 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/25 14:01:16 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 13:31:45 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	sort_stack(t_data *all)
+void	sort_stack(t_all *all)
 {
-	all->len = stack_len(all->a);
+	all->len = stack_len(all);
 	if (!sorted(all->a))
 	{
 		if (all->len <= 5)

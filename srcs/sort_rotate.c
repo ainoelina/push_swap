@@ -6,48 +6,48 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/30 12:56:31 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/30 14:55:55 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 10:56:24 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	check_small(t_data *all, t_operations *ops)
+void	check_small(t_all *all, t_operations *ops)
 {
-	if (ops->rotate_small >= 0)
+	if (ops->r_small >= 0)
 	{
-		while (ops->rotate_small)
+		while (ops->r_small)
 		{
 			rotate(all, B);
-			ops->rotate_small--;
+			ops->r_small--;
 		}
 	}
-	else if (ops->reverse_small >= 0)
+	else if (ops->rr_small >= 0)
 	{
-		while (ops->reverse_small)
+		while (ops->rr_small)
 		{
 			reverse_rotate(&all->b);
-			ops->reverse_small--;
+			ops->rr_small--;
 		}
 	}
 }
 
-void	check_big(t_data *all, t_operations *ops)
+void	check_big(t_all *all, t_operations *ops)
 {
-	if (ops->rotate_big >= 0)
+	if (ops->r_big >= 0)
 	{
-		while (ops->rotate_big)
+		while (ops->r_big)
 		{
 			rotate(all, B);
-			ops->rotate_big--;
+			ops->r_big--;
 		}
 	}
-	else if (ops->reverse_big >= 0)
+	else if (ops->rr_big >= 0)
 	{
-		while (ops->reverse_big)
+		while (ops->rr_big)
 		{
 			reverse_rotate(&all->b);
-			ops->reverse_big--;
+			ops->rr_big--;
 		}
 	}
 }

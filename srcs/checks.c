@@ -6,13 +6,13 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 09:07:03 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/08/25 15:34:24 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 12:18:30 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error_handling(int error)
+void	error_handling(int error, t_all *all)
 {
 	if (error == INPUT_INVALID)
 		write(1, "Error\nInvalid argument input.", 30);
@@ -20,31 +20,30 @@ void	error_handling(int error)
 		write(1, "Error\nDuplicate integer(s) in arguments.", 41);
 	if (error == MALLOC_FAIL)
 		write(1, "Error\nMallocing failed.\n", 25);
+	free(all->a);
 	exit(0);
 }
 
-void	check_duplicates(t_list *list)
+void	check_duplicates(t_list *list, t_all *all)
 {
-	t_list	*lst1;
-	t_list	*lst2;
-	int		num;
+	t_list	*temp1;
+	t_list	*temp2;
 
-	lst1 = list;
-	while (lst1)
+	temp1 = list;
+	while (temp1 != list->prev)
 	{
-		num = lst1->data;
-		lst2 = lst1;
-		while (lst2->next)
+		temp2 = temp1->next;
+		while (temp2 != list)
 		{
-			if (lst2->next->data == num)
-				error_handling(DUPLICATE_ARGS);
-			lst2 = lst2->next;
+			if (temp1->data == temp2->data)
+				error_handling(DUPLICATE_ARGS, all);
+			temp2 = temp2->next;
 		}
-		lst1 = lst1->next;
+		temp1 = temp1->next;
 	}
 }
 
-void	check_input(t_data *all)
+void	check_input(t_all *all)
 {
 	char	*input;
 	int		i;
@@ -61,7 +60,7 @@ void	check_input(t_data *all)
 				&& (input == all->argv[i] || *(input - 1) == ' '))
 				input++;
 			else
-				error_handling(INPUT_INVALID);
+				error_handling(INPUT_INVALID, all);
 		}
 		i++;
 		input = all->argv[i];

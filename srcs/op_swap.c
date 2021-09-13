@@ -6,13 +6,13 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:32:46 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/06/16 12:40:17 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 10:53:44 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	swap(t_data *all, int stack)
+void	swap(t_all *all, int stack)
 {
 	int	temp;
 
@@ -36,7 +36,7 @@ void	swap(t_data *all, int stack)
 	}
 }
 
-void	swap_ab(t_data *all)
+void	swap_ab(t_all *all)
 {
 	swap(all, A);
 	swap(all, B);

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 07:41:16 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/13 14:49:08 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,13 +17,13 @@
 ** number of operations used.
 */
 
-void	two(t_data *all)
+void	two(t_all *all)
 {
 	if (all->a->data > all->a->next->data)
 		swap(all, A);
 }
 
-void	three(t_data *all)
+void	three(t_all *all)
 {
 	int	top;
 	int	middle;
@@ -50,7 +50,7 @@ void	three(t_data *all)
 	}
 }
 
-void	four(t_data *all)
+void	four(t_all *all)
 {
 	t_list	*temp;
 
@@ -61,12 +61,12 @@ void	four(t_data *all)
 		rotate(all, A);
 		temp = temp->next;
 	}
-	push(&all->b, &all->a);
+	push(&all->b, &all->a, PB);
 	three(all);
-	push(&all->a, &all->b);
+	push(&all->a, &all->b, PA);
 }
 
-void	five(t_data *all)
+void	five(t_all *all)
 {
 	int	steps;
 
@@ -76,7 +76,7 @@ void	five(t_data *all)
 	{
 		if (all->a->data < all->median)
 		{
-			push(&all->b, &all->a);
+			push(&all->b, &all->a, PB);
 			steps++;
 		}
 		else
@@ -88,11 +88,11 @@ void	five(t_data *all)
 	three(all);
 	if (all->b->data < all->b->next->data)
 		swap(all, B);
-	push(&all->a, &all->b);
-	push(&all->a, &all->b);
+	push(&all->a, &all->b, PA);
+	push(&all->a, &all->b, PA);
 }
 
-void	sort_small(t_data *all, int len)
+void	sort_small(t_all *all, int len)
 {
 	if (len == 2)
 		two(all);
