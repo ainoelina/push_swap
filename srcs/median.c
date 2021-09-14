@@ -6,17 +6,17 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/17 10:36:32 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 10:58:21 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/14 14:37:23 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void sort_array(int *array, int count)
+void	sort_array(int *array, int count)
 {
-	int i;
-	int j;
-	int save;
+	int	i;
+	int	j;
+	int	save;
 
 	i = 0;
 	while (i < count)
@@ -36,9 +36,9 @@ void sort_array(int *array, int count)
 	}
 }
 
-void find_median(int *array, int count, t_all *all)
+void	find_median(int *array, int count, t_all *all)
 {
-	int quarter;
+	int	quarter;
 
 	quarter = count / 4;
 	all->median = array[quarter * 2];
@@ -50,15 +50,15 @@ void find_median(int *array, int count, t_all *all)
 ** in find_median function.
 */
 
-void median(t_all *all, int stack)
+void	median(t_all *all, int stack)
 {
-	t_list *temp;
-	int *array;
-	int count;
+	t_list	*temp;
+	int		*array;
+	int		count;
 
 	if (stack == A)
 		temp = all->a;
-	if (stack == B)
+	else
 		temp = all->b;
 	array = (int *)malloc(sizeof(int) * (all->len + 1));
 	if (!array)
@@ -73,5 +73,4 @@ void median(t_all *all, int stack)
 	sort_array(array, count);
 	find_median(array, count, all);
 	free(array);
-	printf("median is %i\n", all->median);
 }

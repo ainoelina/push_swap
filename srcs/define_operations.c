@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 14:11:55 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 10:58:44 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/14 14:37:33 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,15 +49,9 @@ void	count_bottom(t_all *all, t_operations *ops, int stack, int opt)
 	int		nb;
 
 	if (stack == A)
-	{
-		last_node(all, A);
-		temp = all->last_node;
-	}
+		temp = all->a->prev;
 	else
-	{
-		last_node(all, B);
-		temp = all->last_node;
-	}
+		temp = all->b->prev;
 	if (temp)
 	{
 		if (opt == 1)
@@ -151,5 +145,4 @@ void	define_operations(t_all *all, t_operations *ops, int stack)
 		ops->big = 1;
 	else if (ops->r_small != -1 || ops->rr_small != -1)
 		ops->small = 1;
-	print_values(all);
 }

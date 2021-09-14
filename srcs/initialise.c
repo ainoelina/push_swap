@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 15:45:42 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 11:42:16 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/14 14:37:26 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,7 @@ void	init_operations(t_all *all, t_operations *ops)
 	ops->rr_small = 0;
 	ops->rr_big = 0;
 	ops->tracker = 0;
+	ops->counter = 0;
 	all->ops = ops;
 }
 

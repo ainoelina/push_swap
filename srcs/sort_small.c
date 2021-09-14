@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 14:49:08 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/14 14:35:40 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@
 void	two(t_all *all)
 {
 	if (all->a->data > all->a->next->data)
-		swap(all, A);
+		swap(all, A, SA);
 }
 
 void	three(t_all *all)
@@ -33,20 +33,20 @@ void	three(t_all *all)
 	middle = all->a->next->data;
 	bottom = all->a->next->next->data;
 	if (top > middle && middle < bottom && bottom > top)
-		swap(all, A);
+		swap(all, A, SA);
 	if (top > middle && middle < bottom && bottom < top)
-		rotate(all, A);
+		rotate(all, A, RA);
 	if (top < middle && middle > bottom && bottom < top)
-		reverse_rotate(&all->a);
+		reverse_rotate(all, A, RRA);
 	if (top > middle && middle > bottom && bottom < top)
 	{
-		swap(all, A),
-		reverse_rotate(&all->a);
+		swap(all, A, SA),
+		reverse_rotate(all, A, RRA);
 	}
 	if (top < middle && middle > bottom && bottom > top)
 	{
-		swap(all, A);
-		rotate(all, A);
+		swap(all, A, SA);
+		rotate(all, A, RA);
 	}
 }
 
@@ -58,12 +58,12 @@ void	four(t_all *all)
 	temp = all->a;
 	while (temp->data != all->min)
 	{
-		rotate(all, A);
+		rotate(all, A, RA);
 		temp = temp->next;
 	}
-	push(&all->b, &all->a, PB);
+	push(all, PB);
 	three(all);
-	push(&all->a, &all->b, PA);
+	push(all, PA);
 }
 
 void	five(t_all *all)
@@ -76,20 +76,20 @@ void	five(t_all *all)
 	{
 		if (all->a->data < all->median)
 		{
-			push(&all->b, &all->a, PB);
+			push(all, PB);
 			steps++;
 		}
 		else
 		{
-			rotate(all, A);
+			rotate(all, A, RA);
 			steps++;
 		}
 	}
 	three(all);
 	if (all->b->data < all->b->next->data)
-		swap(all, B);
-	push(&all->a, &all->b, PA);
-	push(&all->a, &all->b, PA);
+		swap(all, B, SB);
+	push(all, PA);
+	push(all, PA);
 }
 
 void	sort_small(t_all *all, int len)

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/30 12:56:31 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 10:56:24 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/14 14:35:45 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	check_small(t_all *all, t_operations *ops)
 	{
 		while (ops->r_small)
 		{
-			rotate(all, B);
+			rotate(all, B, RB);
 			ops->r_small--;
 		}
 	}
@@ -26,7 +26,7 @@ void	check_small(t_all *all, t_operations *ops)
 	{
 		while (ops->rr_small)
 		{
-			reverse_rotate(&all->b);
+			reverse_rotate(all, B, RRB);
 			ops->rr_small--;
 		}
 	}
@@ -38,7 +38,7 @@ void	check_big(t_all *all, t_operations *ops)
 	{
 		while (ops->r_big)
 		{
-			rotate(all, B);
+			rotate(all, B, RB);
 			ops->r_big--;
 		}
 	}
@@ -46,7 +46,7 @@ void	check_big(t_all *all, t_operations *ops)
 	{
 		while (ops->rr_big)
 		{
-			reverse_rotate(&all->b);
+			reverse_rotate(all, B, RRB);
 			ops->rr_big--;
 		}
 	}

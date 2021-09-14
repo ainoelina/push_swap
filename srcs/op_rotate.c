@@ -6,54 +6,60 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:33:43 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 10:58:52 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/14 14:36:44 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	rotate(t_all *all, int stack)
+void	rotate(t_all *all, int stack, int op)
 {
 	if (stack == A)
 	{
 		if (all->a)
-		{
-			insert_last(all, A, all->a->data);
 			all->a = all->a->next;
-			all->a->prev = NULL;
-		}
 	}
-	if (stack == B)
+	else if (stack == B)
 	{
 		if (all->b)
-		{
-			insert_last(all, B, all->b->data);
 			all->b = all->b->next;
-			all->b->prev = NULL;
-		}
 	}
+	if (op == RA)
+		write(1, "ra\n", 4);
+	else if (op == RB)
+		write(1, "ra\n", 4);
+	all->ops->counter++;
 }
 
-void	reverse_rotate(t_list **stack)
+void	reverse_rotate(t_all *all, int stack, int op)
 {
-	t_list	*head;
-	t_list	*prev;
-	t_list	*last;
-
-	head = *stack;
-	last = head;
-	while (last->next)
+	if (stack == A)
 	{
-		prev = last;
-		last = last->next;
+		if (all->a)
+			all->a = all->a->prev;
 	}
-	last->next = head;
-	prev->next = NULL;
-	*stack = last;
+	else if (stack == B)
+	{
+		if (all->b)
+			all->b = all->b->prev;
+	}
+	if (op == RRA)
+		write(1, "rra\n", 4);
+	else if (op == RRB)
+		write(1, "rra\n", 4);
+	all->ops->counter++;
 }
 
 void	rotate_ab(t_all *all)
 {
-	rotate(all, A);
-	rotate(all, B);
+	rotate(all, A, -1);
+	rotate(all, B, -1);
+	write(1, "rr\n", 4);
+}
+
+void	reverse_rotate_ab(t_all *all)
+{
+	reverse_rotate(all, A, -1);
+	reverse_rotate(all, B, -1);
+	write(1, "rrr\n", 5);
 }

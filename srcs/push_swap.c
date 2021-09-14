@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:01:10 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 14:25:49 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/14 14:35:59 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -24,7 +24,8 @@ int	main(int argc, char **argv)
 	all = NULL;
 	all = init_struct(all, argv);
 	create_stack(all, argc, argv);
+	printf("~~~~~ operations ~~~~~\n");
 	sort_stack(all);
-//	print_stack(all, all->a, A, 'A');
-//	print_stack(all, all->b, B, 'B');
+	printf("\n~~ number of instructions: %i ~~~~\n", all->ops->counter);
+	print_stack(all->a, 'A');
 }

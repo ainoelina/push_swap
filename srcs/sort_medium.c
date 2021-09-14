@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 10:55:47 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/14 14:35:52 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -21,24 +21,25 @@
 void	push_chunk(t_all *all, int chunk)
 {
 	t_list	*temp;
+	t_list	*end;
 	int		flag;
 
 	flag = 0;
 	temp = all->a;
-	last_node(all, A);
+	end = all->a->prev;
 	find_values(all, A);
 	while (1)
 	{
-		if (temp == all->last_node)
+		if (temp == end)
 			flag = 1;
 		if (chunk == 1 && temp->data <= all->median)
-			push(&all->b, &all->a);
+			push(all, PB);
 		else if (chunk == 2 && temp->data > all->median)
-			push(&all->b, &all->a);
+			push(all, PB);
 		else if (temp->data == all->min)
 			break ;
 		else
-			rotate(all, A);
+			rotate(all, A, RA);
 		if (flag == 1)
 			break ;
 		temp = all->a;
@@ -50,9 +51,9 @@ void	do_rotate(t_all *all, t_operations *ops)
 {
 	check_big(all, ops);
 	check_small(all, ops);
-	push(&all->a, &all->b);
+	push(all, PA);
 	if (ops->small)
-		rotate(all, A);
+		rotate(all, A, RA);
 	if (ops->big || all->b == NULL)
 		ops->tracker++;
 	reset(ops);
@@ -60,7 +61,9 @@ void	do_rotate(t_all *all, t_operations *ops)
 
 void	push_stack(t_all *all, t_list *stack)
 {
-	last_node(all, B);
+	t_list	*end;
+
+	end = stack->prev;
 	while (1)
 	{
 		while (stack->data != all->min && stack->data != all->max)
@@ -72,7 +75,7 @@ void	push_stack(t_all *all, t_list *stack)
 		}
 		else
 			stack = stack->next;
-		if (stack == all->last_node)
+		if (stack == end)
 			break ;
 		stack = all->b;
 	}
@@ -91,23 +94,21 @@ void	do_sorting(t_all *all, t_operations *ops)
 ** sort_medium sorts stacks with 100 integers or less. 
 */
 
-void	sort_medium(t_all *all)
+void	sort_medium(t_all *all, t_operations *ops)
 {
-	t_operations	ops;
 	int				chunk;
 
-	init_operations(all, &ops);
 	chunk = 1;
 	median(all, A);
 	while (all->a)
 	{
 		push_chunk(all, chunk);
 		while (all->b)
-			do_sorting(all, &ops);
-		while (ops.tracker)
+			do_sorting(all, ops);
+		while (ops->tracker)
 		{
-			rotate(all, A);
-			ops.tracker--;
+			rotate(all, A, RA);
+			ops->tracker--;
 		}
 		chunk++;
 		if (chunk == 3)

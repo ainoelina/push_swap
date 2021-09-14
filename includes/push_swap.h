@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/13 14:29:44 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/14 14:23:05 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -31,6 +31,8 @@
 
 # define A 1
 # define B 2
+# define A_LAST 3
+# define B_LAST 4
 
 /*
 ** ~~~~~~~~ OPERATIONS ~~~
@@ -62,6 +64,7 @@ typedef struct s_operations
 	int	rr_small;
 	int	rr_big;
 	int	tracker;
+	int	counter;
 }				t_operations;
 
 typedef struct s_list
@@ -88,21 +91,20 @@ typedef struct s_all
 /*
 ** ~~~~~~~~ OPERATIONS ~~~
 */
-void	push(t_list **dest, t_list **src, int op);
-void	swap(t_all *all, int stack);
+void	push(t_all *all, int op);
+void	swap(t_all *all, int stack, int op);
 void	swap_ab(t_all *all);
-void	rotate(t_all *all, int stack);
+void	rotate(t_all *all, int stack, int op);
 void	rotate_ab(t_all *all);
-void	reverse_rotate(t_list **stack);
+void	reverse_rotate(t_all *all, int stack, int op);
 void	reverse_rotate_ab(t_all *all);
-void	rotate_a(t_list **a);
 
 /*
 ** ~~~~~~~~ SORTING ALGORITHM ~~~
 */
 void	sort_stack(t_all *all);
 void	sort_small(t_all *all, int len);
-void	sort_medium(t_all *all);
+void	sort_medium(t_all *all, t_operations *ops);
 void	define_operations(t_all *all, t_operations *ops, int stack);
 
 void	median(t_all *all, int stack);
@@ -152,7 +154,7 @@ void	reset(t_operations *ops);
 /*
 ** ~~~~~~~~ PRINT TOOLS (EXTRA) ~~~
 */
-void   print_stack(t_all *all, t_list *list, int stack, char c);
+void	print_stack(t_list *list, char c);
 void	print_address(void *p, char *str);
 void	print_all(char *str, int data);
 void	print_values(t_all *all);
