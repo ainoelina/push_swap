@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/17 10:36:32 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 12:19:42 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 13:45:45 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -35,6 +35,12 @@ void	sort_array(int *array, int count)
 		i++;
 	}
 }
+
+/*
+** the median value and quarter chunks are used mainly for the
+** medium and big sort functions. they make the sorting of the
+** stack easier by dividing the values into smaller groups to sort.
+*/
 
 void	find_median(int *array, int count, t_all *all)
 {

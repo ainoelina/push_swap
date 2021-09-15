@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 13:41:14 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 14:09:48 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -107,7 +107,7 @@ void	reverse_rotate_ab(t_all *all);
 void	sort_stack(t_all *all);
 void	sort_small(t_all *all, int len);
 void	sort_medium(t_all *all, t_operations *ops);
-void	define_operations(t_all *all, t_operations *ops, int stack);
+void	define_operations(t_all *all, t_operations *ops, t_list *stack);
 
 void	median(t_all *all, int stack);
 

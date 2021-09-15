@@ -6,11 +6,18 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:32:46 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:36:09 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 13:54:36 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** swap function swaps the first two elements of stack with one another. variable
+** 'stacks' defines which stack is modified by storing the data of the first 
+** element in 'temp' variable, after which the data of second element becomes
+** the first and the value in 'temp' is set as the data in the second element.
+*/
 
 void	swap(t_all *all, int stack, int op)
 {

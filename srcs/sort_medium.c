@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 12:12:21 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 14:10:58 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -84,7 +84,7 @@ void	push_stack(t_all *all, t_list *stack)
 void	do_sorting(t_all *all, t_operations *ops)
 {
 	find_values(all, B);
-	define_operations(all, ops, B);
+	define_operations(all, ops, all->b);
 	if (all->b && (ops->r_big >= 0 || ops->rr_big >= 0 || ops->r_small >= 0
 			|| ops->rr_small >= 0))
 		push_stack(all, all->b);

@@ -6,21 +6,14 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:44:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:21:29 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 14:04:52 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	insert_top(t_all *all, int stack, int data)
+void	add_top(t_all *all, t_list **head, t_list *temp, int data)
 {
-	t_list	**head;
-	t_list	*temp;
-
-	if (stack == A)
-		head = &all->a;
-	else
-		head = &all->b;
 	if (*head)
 	{
 		temp = (t_list *)malloc(sizeof(t_list));
@@ -42,6 +35,19 @@ void	insert_top(t_all *all, int stack, int data)
 		(*head)->prev = (*head);
 		(*head)->data = data;
 	}
+}
+
+void	insert_top(t_all *all, int stack, int data)
+{
+	t_list	**head;
+	t_list	*temp;
+
+	temp = NULL;
+	if (stack == A)
+		head = &all->a;
+	else
+		head = &all->b;
+	add_top(all, head, temp, data);
 }
 
 void	delete_top(t_all *all, int stack)
@@ -71,15 +77,8 @@ void	delete_top(t_all *all, int stack)
 	}
 }
 
-void	insert_last(t_all *all, int stack, int data)
+void	add_last(t_all *all, t_list **head, t_list *temp, int data)
 {
-	t_list	**head;
-	t_list	*temp;
-
-	if (stack == A)
-		head = &all->a;
-	else
-		head = &all->b;
 	if (*head)
 	{
 		temp = (t_list *)malloc(sizeof(t_list));
@@ -99,5 +98,18 @@ void	insert_last(t_all *all, int stack, int data)
 		(*head)->next = *head;
 		(*head)->prev = *head;
 		(*head)->data = data;
-	}
+	}	
+}
+
+void	insert_last(t_all *all, int stack, int data)
+{
+	t_list	**head;
+	t_list	*temp;
+
+	temp = NULL;
+	if (stack == A)
+		head = &all->a;
+	else
+		head = &all->b;
+	add_last(all, head, temp, data);
 }

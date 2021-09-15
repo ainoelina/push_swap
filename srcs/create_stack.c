@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:06:29 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:38:09 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 14:44:14 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,23 +15,27 @@
 void	parse_input(t_all *all, char *str)
 {
 	int	data;
-	int	i;
 
-	i = 0;
 	while (*str)
 	{
-		while (i != 0 && *str && *str == ' ')
+		while (*str == ' ')
 			str++;
-		while (*(str + i) && (*(str + i) == '-' || (*(str + i) == '+'
-					|| is_digit(*(str + i)))))
-			i++;
-		if (!*str)
-			break ;
+		if (!(is_digit(*str)) && *str != ' ' && *str != '-' && *str != '+')
+			error_handling(INPUT_INVALID, all);
+		if ((*str == '-' || *str == '+') && (!is_digit(*(str + 1))
+				&& (*(str - 1) != ' ')))
+			error_handling(INPUT_INVALID, all);
+		if (is_digit(*str) && !is_digit(*(str + 1)) && (*(str + 1) != ' ')
+			&& (*(str + 1) != '\0'))
+			error_handling(INPUT_INVALID, all);
 		data = my_atoi(str);
 		if (data > MAX_INT || data < MIN_INT)
 			error_handling(INPUT_INVALID, all);
 		insert_last(all, A, data);
-		str = str + i;
+		if (*str == '-' || *str == '+')
+			str++;
+		while (is_digit(*str))
+			str++;
 	}
 }
 

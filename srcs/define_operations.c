@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 14:11:55 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:37:33 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 14:47:57 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -17,15 +17,12 @@
 ** to either top or bottom of the stack.
 */
 
-void	count_top(t_all *all, t_operations *ops, int stack, int opt)
+void	count_top(t_all *all, t_operations *ops, t_list *stack, int opt)
 {
 	t_list	*temp;
 	int		nb;
 
-	if (stack == A)
-		temp = all->a;
-	else
-		temp = all->b;
+	temp = stack;
 	if (temp)
 	{
 		if (opt == 1)
@@ -43,15 +40,12 @@ void	count_top(t_all *all, t_operations *ops, int stack, int opt)
 	}
 }
 
-void	count_bottom(t_all *all, t_operations *ops, int stack, int opt)
+void	count_bottom(t_all *all, t_operations *ops, t_list *stack, int opt)
 {
 	t_list	*temp;
 	int		nb;
 
-	if (stack == A)
-		temp = all->a->prev;
-	else
-		temp = all->b->prev;
+	temp = stack->prev;
 	if (temp)
 	{
 		if (opt == 1)
@@ -73,15 +67,12 @@ void	count_bottom(t_all *all, t_operations *ops, int stack, int opt)
 	}
 }
 
-void	move_big(t_all *all, t_operations *ops, int stack)
+void	move_big(t_all *all, t_operations *ops, t_list *stack)
 {
 	t_list	*temp;
 	int		opt;
 
-	if (stack == A)
-		temp = all->a;
-	else
-		temp = all->b;
+	temp = stack;
 	opt = 2;
 	if (temp)
 	{
@@ -94,15 +85,12 @@ void	move_big(t_all *all, t_operations *ops, int stack)
 	}
 }
 
-void	move_small(t_all *all, t_operations *ops, int stack)
+void	move_small(t_all *all, t_operations *ops, t_list *stack)
 {
 	t_list	*temp;
 	int		opt;
 
-	if (stack == A)
-		temp = all->a;
-	else
-		temp = all->b;
+	temp = stack;
 	opt = 1;
 	if (temp)
 	{
@@ -121,11 +109,11 @@ void	move_small(t_all *all, t_operations *ops, int stack)
 ** stack a, min or max value in stack b.
 */
 
-void	define_operations(t_all *all, t_operations *ops, int stack)
+void	define_operations(t_all *all, t_operations *ops, t_list *stack)
 {
 	move_small(all, all->ops, stack);
 	move_big(all, all->ops, stack);
-	print_values(all);
+//	print_values(all);
 	if ((ops->r_big >= ops->r_small
 			&& ops->r_big >= ops->rr_small) && ops->r_big != -1)
 		ops->r_big = -1;
