@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:35:52 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 12:12:21 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -27,7 +27,7 @@ void	push_chunk(t_all *all, int chunk)
 	flag = 0;
 	temp = all->a;
 	end = all->a->prev;
-	find_values(all, A);
+	find_min(all, A);
 	while (1)
 	{
 		if (temp == end)
@@ -54,7 +54,7 @@ void	do_rotate(t_all *all, t_operations *ops)
 	push(all, PA);
 	if (ops->small)
 		rotate(all, A, RA);
-	if (ops->big || all->b == NULL)
+	if (ops->big)
 		ops->tracker++;
 	reset(ops);
 }
@@ -91,7 +91,8 @@ void	do_sorting(t_all *all, t_operations *ops)
 }
 
 /*
-** sort_medium sorts stacks with 100 integers or less. 
+** sort_medium sorts stacks with 100 integers or less by finding median
+** and then pushing lower/higher values to stack b. 
 */
 
 void	sort_medium(t_all *all, t_operations *ops)

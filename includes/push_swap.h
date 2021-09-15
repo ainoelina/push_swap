@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:23:05 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 13:41:14 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -86,6 +86,8 @@ typedef struct s_all
 	int				max;
 	int				len;
 	int				median;
+	int				chunk1;
+	int				chunk3;
 }				t_all;
 
 /*
@@ -159,5 +161,6 @@ void	print_address(void *p, char *str);
 void	print_all(char *str, int data);
 void	print_values(t_all *all);
 void	print_data(char *str, int data);
+void	print_banner(void);
 
 #endif

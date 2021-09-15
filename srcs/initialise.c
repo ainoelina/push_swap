@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 15:45:42 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:37:26 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 12:19:07 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,5 +48,7 @@ t_all	*init_struct(t_all *all, char **argv)
 	all->max = 0;
 	all->len = 0;
 	all->median = 0;
+	all->chunk1 = 0;
+	all->chunk3 = 0;
 	return (all);
 }

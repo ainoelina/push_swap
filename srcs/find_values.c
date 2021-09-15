@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 13:35:34 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:42:57 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 10:53:17 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,8 +30,8 @@ void	find_min(t_all *all, int stack)
 	all->min = all->max;
 	while (temp)
 	{
-		if (temp->data > all->max)
-			all->max = temp->data;
+		if (temp->data <= all->min)
+			all->min = temp->data;
 		if (temp == end)
 			break ;
 		temp = temp->next;
@@ -56,8 +56,8 @@ void	find_max(t_all *all, int stack)
 	all->max = temp->data;
 	while (temp)
 	{
-		if (temp->data <= all->min)
-			all->min = temp->data;
+		if (temp->data > all->max)
+			all->max = temp->data;
 		if (temp == end)
 			break ;
 		temp = temp->next;

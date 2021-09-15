@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:35:40 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 10:45:05 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -40,7 +40,7 @@ void	three(t_all *all)
 		reverse_rotate(all, A, RRA);
 	if (top > middle && middle > bottom && bottom < top)
 	{
-		swap(all, A, SA),
+		swap(all, A, SA);
 		reverse_rotate(all, A, RRA);
 	}
 	if (top < middle && middle > bottom && bottom > top)

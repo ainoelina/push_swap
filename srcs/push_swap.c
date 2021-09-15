@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:01:10 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:35:59 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 12:25:35 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -28,4 +28,5 @@ int	main(int argc, char **argv)
 	sort_stack(all);
 	printf("\n~~ number of instructions: %i ~~~~\n", all->ops->counter);
 	print_stack(all->a, 'A');
+	sorted(all->a);
 }

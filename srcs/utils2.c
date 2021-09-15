@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 12:53:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:35:27 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 13:41:49 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -49,11 +49,13 @@ int	sorted(t_list *a)
 	temp = a;
 	while (temp && temp->next)
 	{
+		if (temp == a->prev)
+			break ;
 		if (temp->data > temp->next->data)
 			return (0);
 		temp = temp->next;
 	}
-	printf("sorted!\n");
+	print_banner();
 	return (1);
 }
 

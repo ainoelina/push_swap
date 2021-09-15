@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/17 10:36:32 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:37:23 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/15 12:19:42 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,6 +42,8 @@ void	find_median(int *array, int count, t_all *all)
 
 	quarter = count / 4;
 	all->median = array[quarter * 2];
+	all->chunk1 = array[quarter];
+	all->chunk3 = array[quarter * 3];
 }
 
 /*
