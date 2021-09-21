@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 09:07:03 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 14:39:53 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/21 09:13:18 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -20,7 +20,7 @@ void	error_handling(int error, t_all *all)
 		write(1, "Error\nDuplicate integer(s) in arguments.", 41);
 	if (error == MALLOC_FAIL)
 		write(1, "Error\nMallocing failed.\n", 25);
-	free(all->a);
+	free_all(all);
 	exit(0);
 }
 

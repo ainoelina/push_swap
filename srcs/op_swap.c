@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:32:46 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 13:54:36 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/21 09:17:04 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,9 +42,9 @@ void	swap(t_all *all, int stack, int op)
 		}
 	}
 	if (op == SA)
-		write(1, "sa\n", 4);
+		write(1, "sa\n", 3);
 	else if (op == SB)
-		write(1, "sb\n", 4);
+		write(1, "sb\n", 3);
 	all->ops->counter++;
 }
 
@@ -52,5 +52,5 @@ void	swap_ab(t_all *all)
 {
 	swap(all, A, -1);
 	swap(all, B, -1);
-	write(1, "ss\n", 4);
+	write(1, "ss\n", 3);
 }

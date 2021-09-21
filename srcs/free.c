@@ -1,29 +1,43 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   push_swap.c                                        :+:    :+:            */
+/*   free.c                                             :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
-/*   Created: 2021/06/10 08:01:10 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/21 11:16:57 by avuorio       ########   odam.nl         */
+/*   Created: 2021/09/21 08:47:05 by avuorio       #+#    #+#                 */
+/*   Updated: 2021/09/21 09:14:44 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-int	main(int argc, char **argv)
+void	free_stack(t_list *stack)
 {
-	t_all	*all;
+	t_list	*next;
+	t_list	*empty;
 
-	if (argc < 2)
+	if (stack)
 	{
-		write(1, "Error\nInvalid arguments.\n", 26);
-		return (0);
+		next = stack->next;
+		while (next != stack)
+		{
+			empty = next;
+			next = next->next;
+			free(empty);
+		}
+		free(next);
 	}
-	all = NULL;
-	all = init_struct(all, argv);
-	create_stack(all, argc, argv);
-	sort_stack(all);
-	free_all(all);
+}
+
+void	free_all(t_all *all)
+{
+	if (all)
+	{
+		if (all->a)
+			free_stack(all->a);
+		if (all->b)
+			free_stack(all->b);
+		free(all);
+	}
 }

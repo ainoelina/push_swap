@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 15:45:42 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 12:19:07 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/21 08:58:16 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -42,7 +42,6 @@ t_all	*init_struct(t_all *all, char **argv)
 		error_handling(MALLOC_FAIL, all);
 	all->a = NULL;
 	all->b = NULL;
-	all->last_node = NULL;
 	all->argv = argv;
 	all->min = 0;
 	all->max = 0;

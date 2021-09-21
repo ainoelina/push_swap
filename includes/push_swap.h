@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 14:09:48 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/21 11:17:43 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -79,9 +79,7 @@ typedef struct s_all
 	t_list			*a;
 	t_list			*b;
 	t_operations	*ops;
-	void			*last_node;
 	char			**argv;
-	int				top;
 	int				min;
 	int				max;
 	int				len;
@@ -132,7 +130,7 @@ void	error_handling(int error, t_all *all);
 void	find_values(t_all *all, int stack);
 void	find_max(t_all *all, int stack);
 void	find_min(t_all *all, int stack);
-void	last_node(t_all *all, int stack);
+void	free_all(t_all *all);
 
 int		sorted(t_list *a);
 

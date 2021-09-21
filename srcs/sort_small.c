@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 14:45:30 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/21 09:00:48 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -68,22 +68,20 @@ void	four(t_all *all)
 
 void	five(t_all *all)
 {
-	int	steps;
+	t_list	*stop;
+	int		steps;
 
+	stop = all->a->prev;
 	steps = 0;
 	median(all, A);
-	while (steps <= 5)
+	while (steps != 1)
 	{
+		if (all->a == stop)
+			steps = 1;
 		if (all->a->data < all->median)
-		{
 			push(all, PB);
-			steps++;
-		}
 		else
-		{
 			rotate(all, A, RA);
-			steps++;
-		}
 	}
 	three(all);
 	if (all->b->data < all->b->next->data)

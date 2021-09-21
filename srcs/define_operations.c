@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 14:11:55 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 14:47:57 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/21 09:14:39 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -113,7 +113,6 @@ void	define_operations(t_all *all, t_operations *ops, t_list *stack)
 {
 	move_small(all, all->ops, stack);
 	move_big(all, all->ops, stack);
-//	print_values(all);
 	if ((ops->r_big >= ops->r_small
 			&& ops->r_big >= ops->rr_small) && ops->r_big != -1)
 		ops->r_big = -1;

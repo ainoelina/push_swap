@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 12:53:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 13:41:49 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/21 09:34:40 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -55,22 +55,5 @@ int	sorted(t_list *a)
 			return (0);
 		temp = temp->next;
 	}
-	print_banner();
 	return (1);
-}
-
-void	last_node(t_all *all, int stack)
-{
-	t_list	*temp;
-
-	if (stack == A)
-		temp = all->a;
-	else
-		temp = all->b;
-	while (temp != NULL)
-	{
-		if (temp->next == NULL)
-			all->last_node = temp;
-		temp = temp->next;
-	}
 }
