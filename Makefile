@@ -6,21 +6,21 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/27 11:15:23 by avuorio       #+#    #+#                  #
-#    Updated: 2021/09/21 11:14:52 by avuorio       ########   odam.nl          #
+#    Updated: 2021/09/22 12:22:57 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
 NAME			=	push_swap
 
 SRCS_LIST		=	push_swap.c \
-						checks.c utils1.c utils2.c \
+						checks.c utils.c \
 						initialise.c create_stack.c \
-						sort.c sort_small.c sort_medium.c \
+						sort.c sort_small.c sort_medium.c sort_big.c \
 						find_values.c median.c \
 						define_operations.c sort_rotate.c \
-						add.c free.c \
-						op_push.c op_swap.c op_rotate.c \
-						print_tools.c
+						handle_quarters.c \
+						modify_stack.c free.c \
+						op_push.c op_swap.c op_rotate.c
 
 SRCS			= $(addprefix srcs/, $(SRCS_LIST))
 DIR				= srcs/
@@ -38,21 +38,21 @@ all:			$(NAME)
 
 $(NAME): $(OBJS)
 	@$(CC) -o $(NAME) $(OBJS)
-	@echo "\033[38;5;205mpush_swap compiled ! :)\033[0m"
+	@echo "\\n\033[35;1m  PUSH_SWAP COMPILED ! :)\033[0m \\n"
 
 $(OBJ_DIR)%.o: $(DIR)%.c
+	@echo "\\033[2;1m  making of: push_swap...\033[0m"
 	@mkdir -p $(OBJ_DIR)
 	@$(CC) $(CFLAGS) -o $@ -c $< $(HEADER)
-	@echo "\033[38;5;190mcompiling project ... \033[0m"
 
 clean:
 	@$(RM) $(OBJS)
-	@echo "\033[38;5;2m~~~~ clean object files ! ~~~~~~\033[0m"
+	@echo "\\n\033[35;1m  object files cleaned ! :)\033[0m \\n"
 
 fclean: clean
 	@$(RM) $(NAME)
 	@rmdir objs
-	@echo "\033[38;5;10m~~~~ clean executable ! ~~~~~~~~\033[0m"
+	@echo "\\033[35;1m  executable cleaned ! :)\033[0m \\n"
 
 re: fclean all
 

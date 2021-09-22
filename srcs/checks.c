@@ -6,22 +6,17 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 09:07:03 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/21 09:13:18 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/22 12:08:31 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
-void	error_handling(int error, t_all *all)
+void	error_handling(t_all *all)
 {
-	if (error == INPUT_INVALID)
-		write(1, "Error\nInvalid argument input.", 30);
-	if (error == DUPLICATE_ARGS)
-		write(1, "Error\nDuplicate integer(s) in arguments.", 41);
-	if (error == MALLOC_FAIL)
-		write(1, "Error\nMallocing failed.\n", 25);
+	write(1, "Error\n", 5);
 	free_all(all);
-	exit(0);
+	exit(1);
 }
 
 void	check_duplicates(t_list *list, t_all *all)
@@ -36,7 +31,7 @@ void	check_duplicates(t_list *list, t_all *all)
 		while (temp2 != list)
 		{
 			if (temp1->data == temp2->data)
-				error_handling(DUPLICATE_ARGS, all);
+				error_handling(all);
 			temp2 = temp2->next;
 		}
 		temp1 = temp1->next;
@@ -60,7 +55,7 @@ void	check_input(t_all *all)
 				&& (input == all->argv[i] || *(input - 1) == ' '))
 				input++;
 			else
-				error_handling(INPUT_INVALID, all);
+				error_handling(all);
 		}
 		i++;
 		input = all->argv[i];

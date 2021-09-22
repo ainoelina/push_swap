@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/17 10:36:32 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 13:45:45 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/22 12:20:48 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -48,8 +48,8 @@ void	find_median(int *array, int count, t_all *all)
 
 	quarter = count / 4;
 	all->median = array[quarter * 2];
-	all->chunk1 = array[quarter];
-	all->chunk3 = array[quarter * 3];
+	all->quarter_1 = array[quarter];
+	all->quarter_3 = array[quarter * 3];
 }
 
 /*
@@ -63,16 +63,18 @@ void	median(t_all *all, int stack)
 	t_list	*temp;
 	int		*array;
 	int		count;
+	int		len;
 
 	if (stack == A)
 		temp = all->a;
 	else
 		temp = all->b;
-	array = (int *)malloc(sizeof(int) * (all->len + 1));
+	len = stack_len(all);
+	array = (int *)malloc(sizeof(int) * (len + 1));
 	if (!array)
-		error_handling(MALLOC_FAIL, all);
+		error_handling(all);
 	count = 0;
-	while (count < all->len)
+	while (count < len)
 	{
 		array[count] = temp->data;
 		temp = temp->next;

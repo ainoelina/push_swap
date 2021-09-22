@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/21 11:17:43 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/22 12:22:15 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -16,14 +16,6 @@
 # include <stdlib.h>
 # include <stdio.h>
 # include <unistd.h>
-
-/*
-** ~~~~~~~~ ERRORS ~~~
-*/
-
-# define INPUT_INVALID -1
-# define DUPLICATE_ARGS -2
-# define MALLOC_FAIL -3
 
 /*
 ** ~~~~~~~~ STACKS ~~~
@@ -82,10 +74,9 @@ typedef struct s_all
 	char			**argv;
 	int				min;
 	int				max;
-	int				len;
 	int				median;
-	int				chunk1;
-	int				chunk3;
+	int				quarter_1;
+	int				quarter_3;
 }				t_all;
 
 /*
@@ -105,7 +96,16 @@ void	reverse_rotate_ab(t_all *all);
 void	sort_stack(t_all *all);
 void	sort_small(t_all *all, int len);
 void	sort_medium(t_all *all, t_operations *ops);
+void	sort_big(t_all *all, t_operations *ops);
 void	define_operations(t_all *all, t_operations *ops, t_list *stack);
+void	do_sorting(t_all *all, t_operations *ops);
+void	do_rotate(t_all *all, t_operations *ops);
+void	push_stack(t_all *all, t_list *stack);
+
+void	push_1(t_all *all);
+void	push_2(t_all *all);
+void	push_3(t_all *all);
+void	push_4(t_all *all);
 
 void	median(t_all *all, int stack);
 
@@ -126,7 +126,7 @@ void	delete_top(t_all *all, int stack);
 */
 void	check_input(t_all *all);
 void	check_duplicates(t_list *list, t_all *all);
-void	error_handling(int error, t_all *all);
+void	error_handling(t_all *all);
 void	find_values(t_all *all, int stack);
 void	find_max(t_all *all, int stack);
 void	find_min(t_all *all, int stack);
@@ -146,10 +146,10 @@ int		is_digit(int c);
 int		stack_len(t_all *all);
 int		get_position(char *str);
 
-t_all	*init_struct(t_all *all, char **argv);
+t_all	*init_all(t_all *all, char **argv);
 
 void	init_operations(t_all *all, t_operations *ops);
-void	reset(t_operations *ops);
+void	reset(t_all *all, t_operations *ops);
 
 /*
 ** ~~~~~~~~ PRINT TOOLS (EXTRA) ~~~

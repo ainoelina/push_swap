@@ -1,12 +1,12 @@
 /* ************************************************************************** */
 /*                                                                            */
 /*                                                        ::::::::            */
-/*   add.c                                              :+:    :+:            */
+/*   modify_stack.c                                     :+:    :+:            */
 /*                                                     +:+                    */
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:44:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 14:04:52 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/22 12:08:01 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,7 +18,7 @@ void	add_top(t_all *all, t_list **head, t_list *temp, int data)
 	{
 		temp = (t_list *)malloc(sizeof(t_list));
 		if (!temp)
-			error_handling(MALLOC_FAIL, all);
+			error_handling(all);
 		temp->next = *head;
 		temp->prev = (*head)->prev;
 		(*head)->prev = temp;
@@ -30,7 +30,7 @@ void	add_top(t_all *all, t_list **head, t_list *temp, int data)
 	{
 		*head = (t_list *)malloc(sizeof(t_list));
 		if (!*head)
-			error_handling(MALLOC_FAIL, all);
+			error_handling(all);
 		(*head)->next = *head;
 		(*head)->prev = (*head);
 		(*head)->data = data;
@@ -83,7 +83,7 @@ void	add_last(t_all *all, t_list **head, t_list *temp, int data)
 	{
 		temp = (t_list *)malloc(sizeof(t_list));
 		if (!temp)
-			error_handling(MALLOC_FAIL, all);
+			error_handling(all);
 		temp->next = *head;
 		temp->prev = (*head)->prev;
 		(*head)->prev = temp;
@@ -94,7 +94,7 @@ void	add_last(t_all *all, t_list **head, t_list *temp, int data)
 	{
 		*head = (t_list *)malloc(sizeof(t_list));
 		if (!head)
-			error_handling(MALLOC_FAIL, all);
+			error_handling(all);
 		(*head)->next = *head;
 		(*head)->prev = *head;
 		(*head)->data = data;

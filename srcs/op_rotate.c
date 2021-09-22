@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:33:43 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/21 09:16:55 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/22 11:07:39 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -33,7 +33,7 @@ void	rotate(t_all *all, int stack, int op)
 	if (op == RA)
 		write(1, "ra\n", 3);
 	else if (op == RB)
-		write(1, "ra\n", 3);
+		write(1, "rb\n", 3);
 	all->ops->counter++;
 }
 
@@ -57,7 +57,7 @@ void	reverse_rotate(t_all *all, int stack, int op)
 	if (op == RRA)
 		write(1, "rra\n", 4);
 	else if (op == RRB)
-		write(1, "rra\n", 4);
+		write(1, "rrb\n", 4);
 	all->ops->counter++;
 }
 

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/10 08:01:10 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/21 11:16:57 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/22 12:11:39 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,11 +18,11 @@ int	main(int argc, char **argv)
 
 	if (argc < 2)
 	{
-		write(1, "Error\nInvalid arguments.\n", 26);
+		write(1, "Error\n", 5);
 		return (0);
 	}
 	all = NULL;
-	all = init_struct(all, argv);
+	all = init_all(all, argv);
 	create_stack(all, argc, argv);
 	sort_stack(all);
 	free_all(all);

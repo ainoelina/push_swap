@@ -6,19 +6,19 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/15 14:10:58 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/22 11:47:12 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** push_chunk function loops trough the stack and pushes all values
+** push_part function loops trough the stack and pushes all values
 ** smaller/bigger or equal to median to the stack b, depending on 
-** the chunk number.
+** the part number.
 */
 
-void	push_chunk(t_all *all, int chunk)
+void	push_part(t_all *all, int part)
 {
 	t_list	*temp;
 	t_list	*end;
@@ -27,14 +27,14 @@ void	push_chunk(t_all *all, int chunk)
 	flag = 0;
 	temp = all->a;
 	end = all->a->prev;
-	find_min(all, A);
+	find_values(all, A);
 	while (1)
 	{
 		if (temp == end)
 			flag = 1;
-		if (chunk == 1 && temp->data <= all->median)
+		if (part == 1 && temp->data <= all->median)
 			push(all, PB);
-		else if (chunk == 2 && temp->data > all->median)
+		else if (part == 2 && temp->data > all->median)
 			push(all, PB);
 		else if (temp->data == all->min)
 			break ;
@@ -44,7 +44,7 @@ void	push_chunk(t_all *all, int chunk)
 			break ;
 		temp = all->a;
 	}
-	reset(all->ops);
+	reset(all, all->ops);
 }
 
 void	do_rotate(t_all *all, t_operations *ops)
@@ -54,9 +54,9 @@ void	do_rotate(t_all *all, t_operations *ops)
 	push(all, PA);
 	if (ops->small)
 		rotate(all, A, RA);
-	if (ops->big)
+	if (ops->big || !all->b)
 		ops->tracker++;
-	reset(ops);
+	reset(all, ops);
 }
 
 void	push_stack(t_all *all, t_list *stack)
@@ -97,22 +97,24 @@ void	do_sorting(t_all *all, t_operations *ops)
 
 void	sort_medium(t_all *all, t_operations *ops)
 {
-	int				chunk;
+	int	part;
 
-	chunk = 1;
+	part = 1;
 	median(all, A);
 	while (all->a)
 	{
-		push_chunk(all, chunk);
+		push_part(all, part);
 		while (all->b)
-			do_sorting(all, ops);
+			do_sorting(all, all->ops);
 		while (ops->tracker)
 		{
-			rotate(all, A, RA);
 			ops->tracker--;
+			if (ops->tracker == 0)
+				break ;
+			rotate(all, A, RA);
 		}
-		chunk++;
-		if (chunk == 3)
+		part++;
+		if (part == 3)
 			break ;
 	}
 }
