@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/05/27 12:44:15 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/22 12:22:15 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/23 07:52:44 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -141,7 +141,7 @@ int		sorted(t_list *a);
 void	*malloc_memory(size_t size);
 
 int		ft_strlen(char *str);
-int		my_atoi(char *str);
+int		my_atoi(t_all *all, char *str);
 int		is_digit(int c);
 int		stack_len(t_all *all);
 int		get_position(char *str);

@@ -6,15 +6,14 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/16 12:52:45 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/21 09:00:48 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/22 12:55:52 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** sort_small.c handles the sorting of five numbers or less, optimising the
-** number of operations used.
+** sort_small.c handles the sorting of 5 numbers or less.
 */
 
 void	two(t_all *all)

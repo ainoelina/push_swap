@@ -6,7 +6,7 @@
 #    By: avuorio <avuorio@student.codam.nl>           +#+                      #
 #                                                    +#+                       #
 #    Created: 2021/05/27 11:15:23 by avuorio       #+#    #+#                  #
-#    Updated: 2021/09/22 12:22:57 by avuorio       ########   odam.nl          #
+#    Updated: 2021/09/22 12:30:50 by avuorio       ########   odam.nl          #
 #                                                                              #
 # **************************************************************************** #
 
@@ -19,7 +19,7 @@ SRCS_LIST		=	push_swap.c \
 						find_values.c median.c \
 						define_operations.c sort_rotate.c \
 						handle_quarters.c \
-						modify_stack.c free.c \
+						modify_stack.c \
 						op_push.c op_swap.c op_rotate.c
 
 SRCS			= $(addprefix srcs/, $(SRCS_LIST))

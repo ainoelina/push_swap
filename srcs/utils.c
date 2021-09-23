@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 12:53:04 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/22 12:13:58 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/23 07:52:21 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -30,11 +30,12 @@ int	is_digit(int c)
 		return (0);
 }
 
-int	my_atoi(char *str)
+int	my_atoi(t_all *all, char *str)
 {
-	int	i;
-	int	sign;
-	int	n;
+	int		i;
+	int		sign;
+	int		data;
+	long	n;
 
 	i = 0;
 	sign = 1;
@@ -51,7 +52,10 @@ int	my_atoi(char *str)
 		i++;
 	}
 	n = n * sign;
-	return (n);
+	if (n > MAX_INT || n < MIN_INT)
+		error_handling(all);
+	data = n;
+	return (data);
 }
 
 int	stack_len(t_all *all)

@@ -6,17 +6,46 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/06/03 09:07:03 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/22 12:08:31 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/23 09:59:40 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
+void	free_stack(t_list *stack)
+{
+	t_list	*next;
+	t_list	*empty;
+
+	if (stack)
+	{
+		next = stack->next;
+		while (next != stack)
+		{
+			empty = next;
+			next = next->next;
+			free(empty);
+		}
+	}
+}
+
+void	free_all(t_all *all)
+{
+	if (all)
+	{
+		if (all->a)
+			free_stack(all->a);
+		if (all->b)
+			free_stack(all->b);
+		free(all);
+	}
+}
+
 void	error_handling(t_all *all)
 {
 	write(1, "Error\n", 5);
 	free_all(all);
-	exit(1);
+	exit(-1);
 }
 
 void	check_duplicates(t_list *list, t_all *all)

@@ -6,11 +6,16 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/30 12:56:31 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/14 14:35:45 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/23 10:05:19 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** sort_rotate.c checks for the defined operations and carries them out in
+** loops.
+*/
 
 void	check_small(t_all *all, t_operations *ops)
 {

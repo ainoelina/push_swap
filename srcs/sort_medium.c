@@ -6,19 +6,18 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/23 13:10:50 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/22 11:47:12 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/23 09:26:52 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
 
 /*
-** push_part function loops trough the stack and pushes all values
-** smaller/bigger or equal to median to the stack b, depending on 
-** the part number.
+** push_stage function loops trough the stack and pushes all values
+** smaller/bigger to median to the stack b, depending on the stage.
 */
 
-void	push_part(t_all *all, int part)
+void	push_stage(t_all *all, int stage)
 {
 	t_list	*temp;
 	t_list	*end;
@@ -32,9 +31,9 @@ void	push_part(t_all *all, int part)
 	{
 		if (temp == end)
 			flag = 1;
-		if (part == 1 && temp->data <= all->median)
+		if (stage == 1 && temp->data <= all->median)
 			push(all, PB);
-		else if (part == 2 && temp->data > all->median)
+		else if (stage == 2 && temp->data > all->median)
 			push(all, PB);
 		else if (temp->data == all->min)
 			break ;
@@ -46,6 +45,13 @@ void	push_part(t_all *all, int part)
 	}
 	reset(all, all->ops);
 }
+
+/*
+** do_rotate function does the chosen rotation and then pushes the element
+** to stack A. if the element pushed is small, it is rotated to bottom of
+** stack A, and if the element is big the tracker is increased and the
+** rotation is done once stack B is empty.
+*/
 
 void	do_rotate(t_all *all, t_operations *ops)
 {
@@ -91,19 +97,19 @@ void	do_sorting(t_all *all, t_operations *ops)
 }
 
 /*
-** sort_medium sorts stacks with 100 integers or less by finding median
+** sort_medium sorts stacks with 5 to 100 integers by finding median
 ** and then pushing lower/higher values to stack b. 
 */
 
 void	sort_medium(t_all *all, t_operations *ops)
 {
-	int	part;
+	int	stage;
 
-	part = 1;
+	stage = 1;
 	median(all, A);
 	while (all->a)
 	{
-		push_part(all, part);
+		push_stage(all, stage);
 		while (all->b)
 			do_sorting(all, all->ops);
 		while (ops->tracker)
@@ -113,8 +119,8 @@ void	sort_medium(t_all *all, t_operations *ops)
 				break ;
 			rotate(all, A, RA);
 		}
-		part++;
-		if (part == 3)
+		stage++;
+		if (stage == 3)
 			break ;
 	}
 }

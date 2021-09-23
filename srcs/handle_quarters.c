@@ -6,11 +6,15 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/09/22 11:56:03 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/22 11:56:37 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/23 10:07:54 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
 #include "push_swap.h"
+
+/*
+** push functions are used to push wanted quarters into stack B.
+*/
 
 void	push_1(t_all *all)
 {

@@ -6,7 +6,7 @@
 /*   By: avuorio <avuorio@student.codam.nl>           +#+                     */
 /*                                                   +#+                      */
 /*   Created: 2021/08/25 14:11:55 by avuorio       #+#    #+#                 */
-/*   Updated: 2021/09/21 09:14:39 by avuorio       ########   odam.nl         */
+/*   Updated: 2021/09/23 08:40:14 by avuorio       ########   odam.nl         */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -99,12 +99,12 @@ void	move_small(t_all *all, t_operations *ops, t_list *stack)
 		if (ops->r_small <= ops->rr_small)
 			ops->rr_small = -1;
 		else
-			ops->rr_small = -1;
+			ops->r_small = -1;
 	}
 }
 
 /*
-** after defining the number of moves, define operations function compares
+** after defining the number of moves, define_operations function compares
 ** the calculated values and defines the most efficient option to move to
 ** stack a, min or max value in stack b.
 */
